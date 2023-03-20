@@ -1,6 +1,6 @@
 import './Main.css'
 
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { useSnapCarousel } from 'react-snap-carousel'
 import {
   BrowserRouter as Router,
@@ -38,6 +38,8 @@ export default function Main() {
 
   const { scrollRef: bestBooksScrollRef, pages: bestBooksPages, activePageIndex: bestBooksActivePageIndex, next: bestBooksNext, prev: bestBooksPrev, goTo: bestBooksGoTo } =
       useSnapCarousel({ ref: bestBooksRef });
+
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className='Main'>

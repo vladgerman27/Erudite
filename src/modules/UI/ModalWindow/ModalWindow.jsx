@@ -1,21 +1,14 @@
 import './ModalWindow.css'
 
 import React from 'react'
-import { Modal } from 'react-bootstrap';
 
 import { books } from '../../Books';
 
-export default function ModalWindow() {
+
+export default function ModalBooks({isOpen, setIsOpen}) {
   return (
-    <div className='ModalWindow'>
-        {books.map((book) => (
-            <div key={book.id}>
-                <div className='start-info'>
-                <h1>{book.title}</h1>
-                <nav></nav>
-            </div>
-            </div>
-        ))}
+    <div >
+      
     </div>
-  )
+  );
 }

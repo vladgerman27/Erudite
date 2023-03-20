@@ -1,6 +1,8 @@
 import './AboutUs.css'
 import React from 'react'
 
+import RickRoll from '../video/RickRoll.mp4'
+
 export default function AboutUs() {
   return (
     <div className='AboutUs'>
@@ -28,7 +30,7 @@ export default function AboutUs() {
         <nav className='greeting'>Желаем вам приятного чтения!</nav>
 
         <video controls="controls">
-            <source src="https://youtu.be/dQw4w9WgXcQ" type='video/mp4'/>
+            <source src={RickRoll} type='video/mp4'/>
         </video>
     </div>
   )

@@ -4,7 +4,7 @@ import Main from './modules/Main/Main'
 import AboutUs from './modules/AboutUs/AboutUs'
 import Contacts from './modules/Contacts/Contacts'
 import Page from './modules/Page/Page'
-import ModalWindow from './modules/UI/ModalWindow/ModalWindow'
+import Popular from './modules/Page/Popular'
 
 import {
     BrowserRouter as Router,
@@ -174,7 +174,7 @@ function App() {
         <Route path="/" element={<Main/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/contacts" element={<Contacts/>} />
-        <Route path="/m" element={<ModalWindow/>} />
+        <Route path="/popular" element={<Popular/>} />
       
         {categories.map(category =>
           <Route path={category.path} element={
@@ -192,7 +192,7 @@ function App() {
 
         <div className='info'>
           <NavLink to="/aboutus">О нас</NavLink>
-          <NavLink to="m">Преимущества</NavLink>
+          <NavLink to="">Преимущества</NavLink>
           <NavLink to="/contacts">Контакты</NavLink>
           <NavLink to="">Оплата и доставка</NavLink>
           <nav>Г. Алматы ул. Байтурсынова 22</nav>
