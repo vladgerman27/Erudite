@@ -1,0 +1,11 @@
+.ModalWindow {
+    width: 1036px;
+    height: 1134px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.start-info {
+    display: flex;
+}
