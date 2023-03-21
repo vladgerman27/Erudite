@@ -10,6 +10,7 @@ import Cart from '../images/Cart.png'
 export default function Popular() {
   return (
     <div className='Page'>
+      <h1>Популярное</h1>
         {books.filter(book => book.popular === true).map((book) => (
               <div key={book.id} className='book'>
               <button className='favorites'><img src={Favorites} /></button>

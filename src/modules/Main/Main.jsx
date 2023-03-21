@@ -11,6 +11,8 @@ import {
   BrowserRouter
 } from "react-router-dom"
 
+import ModalBooks from '../UI/ModalWindow/ModalWindow'
+
 import Cart from '../images/Cart.png'
 import Favorites from '../images/Favorites.png'
 import Partners from '../images/Partners.png'
@@ -74,7 +76,7 @@ export default function Main() {
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
               <div className='buttons'>
-                <button className='buy'>{book.cost}</button>
+                <ModalBooks book={book}/>
                 <button className='cart'><img src={Cart} /></button>
               </div>
             </div>
@@ -114,7 +116,7 @@ export default function Main() {
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
               <div className='buttons'>
-                <button className='buy'>{book.cost}</button>
+                <ModalBooks book={book}/>
                 <button className='cart'><img src={Cart} /></button>
               </div>
             </div>

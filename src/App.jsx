@@ -5,7 +5,9 @@ import AboutUs from './modules/AboutUs/AboutUs'
 import Contacts from './modules/Contacts/Contacts'
 import Page from './modules/Page/Page'
 import Popular from './modules/Page/Popular'
+import ModalBooks from './modules/UI/ModalWindow/ModalWindow'
 
+import React, { useState } from 'react';
 import {
     BrowserRouter as Router,
     Route,
@@ -43,71 +45,70 @@ import {
     {
       name: 'Художественная литература',
       path: 'hud-lit',
-      serverPath: 'hud-lit',
+      serverPath: '/hud-lit',
       genre: hudLitBooks
     },
     {
       name: 'Бизнес литература',
       path: 'buisness',
-      serverPath: 'buisness',
+      serverPath: '/buisness',
       genre: buisnessBooks
     },
     {
       name: 'Психология и философия',
       path: 'phylosophy',
-      serverPath: 'phylosophy',
+      serverPath: '/phylosophy',
       genre: phylosophyBooks
     },
     {
       name: 'Фантакстика',
       path: 'fantastic',
-      serverPath: 'fantastic',
+      serverPath: '/fantastic',
       genre: fantasticBooks
     },
     {
       name: 'Детская литература',
       path: 'child',
-      serverPath: 'child',
+      serverPath: '/child',
       genre: childBooks
     },
     {
       name: 'Учебная литература',
       path: 'study',
-      serverPath: 'study',
+      serverPath: '/study',
       genre: studyBooks
     },
     {
       name: 'Научная литература',
       path: 'science',
-      serverPath: 'science',
+      serverPath: '/science',
       genre: scienceBooks
     },
     {
       name: 'Медецина и здоровье',
       path: 'medecine',
-      serverPath: 'medecine',
+      serverPath: '/medecine',
       genre: medecineBooks
     },
     {
       name: 'Исскуство и история',
       path: 'nature',
-      serverPath: 'nature',
+      serverPath: '/nature',
       genre: natureBooks
     },
     {
       name: 'Спорт',
       path: 'sport',
-      serverPath: 'sport',
+      serverPath: '/sport',
       genre: sportBooks
     },
     {
       name: 'Комиксы и манга',
       path: 'comics',
-      serverPath: 'comics',
+      serverPath: '/comics',
       genre: comicsBooks
     },
   ];
-
 
   function Category({ genre }) {
     return (
@@ -119,7 +120,7 @@ import {
             <nav><b>{book.title}</b></nav>
             <nav>{book.author}</nav>
             <div className='buttons'>
-              <button className='buy'>{book.cost}</button>
+              <ModalBooks book={book}/>
               <button className='cart'><img src={Cart} /></button>
             </div>
           </div>
@@ -151,7 +152,7 @@ function App() {
           <div className='header-bottom'>
             <select>
               <option><Link to='/'>Каталог</Link></option>
-              <option><Link to='hud-lit'>Художественная литература</Link></option>
+              <option><Link to='/hud-lit'>Художественная литература</Link></option>
               <option>Бизнес литература</option>
               <option>Психологическая литература</option>
               <option>Фантастика</option>
