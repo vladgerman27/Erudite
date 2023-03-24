@@ -13,8 +13,8 @@ import {
 
 import ModalBooks from '../UI/ModalWindow/ModalWindow'
 
-import Cart from '../images/Cart.png'
-import Favorites from '../images/Favorites.png'
+import CartImg from '../images/Cart.png'
+import FavoritesImg from '../images/Favorites.png'
 import Partners from '../images/Partners.png'
 
 import { books } from '../Books'
@@ -71,13 +71,13 @@ export default function Main() {
           >
             {books.filter(book => book.new === true).map((book) => (
               <div key={book.id} className='book'>
-              <button className='favorites'><img src={Favorites} /></button>
+              <button className='favorites'><img src={FavoritesImg} /></button>
               <img src={book.img} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
               <div className='buttons'>
                 <ModalBooks book={book}/>
-                <button className='cart'><img src={Cart} /></button>
+                <button className='cart'><img src={CartImg} /></button>
               </div>
             </div>
             ))}
@@ -111,13 +111,13 @@ export default function Main() {
           >
             {books.filter(book => book.best === true).map((book) => (
               <div key={book.id} className='book'>
-              <button className='favorites'><img src={Favorites} /></button>
+              <button className='favorites'><img src={FavoritesImg} /></button>
               <img src={book.img} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
               <div className='buttons'>
                 <ModalBooks book={book}/>
-                <button className='cart'><img src={Cart} /></button>
+                <button className='cart'><img src={CartImg} /></button>
               </div>
             </div>
             ))}

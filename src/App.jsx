@@ -6,6 +6,7 @@ import Contacts from './modules/Contacts/Contacts'
 import Page from './modules/Page/Page'
 import Popular from './modules/Page/Popular'
 import ModalBooks from './modules/UI/ModalWindow/ModalWindow'
+import Cart from './modules/Cart/Cart'
 
 import React, { useState } from 'react';
 import {
@@ -14,14 +15,15 @@ import {
     Link,
     Routes,
     NavLink,
-    BrowserRouter
+    BrowserRouter,
+    useNavigate
   } from "react-router-dom"
   import PropTypes from "prop-types";
 
   import Company_logo from './modules/images/Mask_group.png'
   import Search from './modules/images/Search.png'
-  import Favorites from './modules/images/Favorites.png'
-  import Cart from './modules/images/Cart.png'
+  import FavoritesImg from './modules/images/Favorites.png'
+  import CartImg from './modules/images/Cart.png'
   import Profile from './modules/images/Profile.png'
   import Instagram from './modules/images/Instagram.png'
   import Facebook from './modules/images/Facebook.png'
@@ -115,18 +117,40 @@ import {
       <div className='books'>
         {genre.map((book) => (
           <div key={book.id} className='book'>
-            <button className='favorites'><img src={Favorites} /></button>
+            <button className='favorites'><img src={FavoritesImg} /></button>
             <img src={book.img} />
             <nav><b>{book.title}</b></nav>
             <nav>{book.author}</nav>
             <div className='buttons'>
               <ModalBooks book={book}/>
-              <button className='cart'><img src={Cart} /></button>
+              <button className='cart'><img src={CartImg} /></button>
             </div>
           </div>
         ))}
       </div>
     );
+  }
+
+  function Navigation() {
+    const navigate = useNavigate();
+    const [selectedCategory, setSelectedCategory] = useState('Каталог');
+
+    function handleCategoryChange(event) {
+      setSelectedCategory(event.target.value);
+      const selected = categories.find(category => category.name === event.target.value);
+      if (selected) {
+        navigate(selected.serverPath);
+      }
+    }
+
+    return (
+      <select value={selectedCategory} onChange={handleCategoryChange}>
+        <option key="/">Каталог</option>
+        {categories.map(category => (
+          <option key={category.path}>{category.name}</option>
+        ))}
+      </select>
+    )
   }
 
 function App() {
@@ -143,26 +167,14 @@ function App() {
             </div>
 
             <div className='actions'>
-              <NavLink to="/favorites"><img src={Favorites} /></NavLink>
-              <NavLink to="/cart"><img src={Cart} /></NavLink>
+              <NavLink to="/favorites"><img src={FavoritesImg} /></NavLink>
+              <NavLink to="/cart"><img src={CartImg} /></NavLink>
               <NavLink to="/profile"><img src={Profile} /></NavLink>
             </div>
           </div>
 
           <div className='header-bottom'>
-            <select>
-              <option><Link to='/'>Каталог</Link></option>
-              <option><Link to='/hud-lit'>Художественная литература</Link></option>
-              <option>Бизнес литература</option>
-              <option>Психологическая литература</option>
-              <option>Фантастика</option>
-              <option>Детская литература</option>
-              <option>Учебная литература</option>
-              <option>Научная литература</option>
-              <option>Медицина. Здоровье</option>
-              <option>Искусство. История</option>
-              <option>Комиксы и манга</option>
-            </select>
+            <Navigation/>
             <NavLink to="/popular">Популярные</NavLink>
             <NavLink to="/aboutus">О нас</NavLink>
             <NavLink to="/contacts">Контакты</NavLink>
@@ -172,13 +184,14 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/" element={<Main/>} />
+        <Route key="/" path="/" element={<Main/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/contacts" element={<Contacts/>} />
         <Route path="/popular" element={<Popular/>} />
+        <Route path="/cart" element={<Cart/>} />
       
         {categories.map(category =>
-          <Route path={category.path} element={
+          <Route key={category.path} path={category.path} element={
             <Page 
               name={category.name}
               path={category.serverPath}
