@@ -8,8 +8,10 @@ import Popular from './modules/Page/Popular'
 import ModalBooks from './modules/UI/ModalWindow/ModalWindow'
 import Cart from './modules/Cart/Cart'
 import CartButton from './modules/UI/CartButton'
+import Favorites from './modules/Favorites/Favorites'
+import FavoriteButton from './modules/UI/FavoriteButton'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Route,
@@ -118,7 +120,7 @@ import {
       <div className='books'>
         {genre.map((book) => (
           <div key={book.id} className='book'>
-            <button className='favorites'><img src={FavoritesImg} /></button>
+          <FavoriteButton book={book}/>
             <img src={book.img} />
             <nav><b>{book.title}</b></nav>
             <nav>{book.author}</nav>
@@ -190,6 +192,7 @@ function App() {
         <Route path="/contacts" element={<Contacts/>} />
         <Route path="/popular" element={<Popular/>} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/favorites" element={<Favorites/>} />
       
         {categories.map(category =>
           <Route key={category.path} path={category.path} element={

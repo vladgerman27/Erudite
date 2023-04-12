@@ -21,6 +21,7 @@
       // language: 'Русский',
       // popular: true,
       // inCart: false,
+      //inFavorites: false,
       // annotation: 'Два брата. Трагическое прошлое, преследующее их до сих пор. Оба приняли неверное решение, стоившее жизни их сестре. Один посвятил себя мести. Другой - прощению. И оба платят за свой выбор - гораздо больше, чем могли себе представить… С того времени, как неизвестный похитил и убил их сестру, прошло 20 лет. Адам, старший брат, выбрал профессию частного детектива, нелюдимого и циничного, оказывающего услуги людям из мира криминала. Младший, Кент, стал футбольным тренером, уважаемым членом общины и глубоко верующим человеком. Они не общаются, продолжая винить друг друга за то, что произошло с их сестрой. До тех пор пока не происходит новая трагедия, уже с другой девушкой, потому что оба брата вновь приняли неверное решение… Этот роман - история семейной трагедии, вины и искупления.'
 
 export let books = [
@@ -47,6 +48,7 @@ export let books = [
       language: 'Русский',
       popular: true,
       inCart: false,
+      inFavorites: false,
       annotation: 'Два брата. Трагическое прошлое, преследующее их до сих пор. Оба приняли неверное решение, стоившее жизни их сестре. Один посвятил себя мести. Другой - прощению. И оба платят за свой выбор - гораздо больше, чем могли себе представить… С того времени, как неизвестный похитил и убил их сестру, прошло 20 лет. Адам, старший брат, выбрал профессию частного детектива, нелюдимого и циничного, оказывающего услуги людям из мира криминала. Младший, Кент, стал футбольным тренером, уважаемым членом общины и глубоко верующим человеком. Они не общаются, продолжая винить друг друга за то, что произошло с их сестрой. До тех пор пока не происходит новая трагедия, уже с другой девушкой, потому что оба брата вновь приняли неверное решение… Этот роман - история семейной трагедии, вины и искупления.'
     },
     {
@@ -58,9 +60,9 @@ export let books = [
       new: false,
       best: true,
       genre: 'hud-lit',
-      available: 0,
-      inCart: false,
       available: 3,
+      inCart: false,
+      inFavorites: false,
     },
     {
       id: 3,
@@ -71,7 +73,8 @@ export let books = [
       new: true,
       best: false,
       inCart: false,
-      available: 5,
+      inFavorites: false,
+      available: 0,
       genre: 'hud-lit'
     },
     {
@@ -83,6 +86,7 @@ export let books = [
       new: false,
       best: false,
       inCart: false,
+      inFavorites: false,
       available: 5,
     },
     {
@@ -94,6 +98,7 @@ export let books = [
       new: true,
       best: true,
       inCart: false,
+      inFavorites: false,
       available: 5,
     },
     {
@@ -105,6 +110,7 @@ export let books = [
       new: false,
       best: true,
       inCart: false,
+      inFavorites: false,
       available: 5,
       genre: 'hud-lit'
     },
@@ -117,6 +123,7 @@ export let books = [
       new: true,
       best: false,
       inCart: false,
+      inFavorites: false,
       available: 5,
       genre: 'hud-lit'
     },
@@ -129,6 +136,7 @@ export let books = [
       new: true,
       best: true,
       inCart: false,
+      inFavorites: false,
       available: 5,
     },
     {
@@ -140,6 +148,7 @@ export let books = [
       new: true,
       best: true,
       inCart: false,
+      inFavorites: false,
       available: 5,
     },
     {
@@ -151,6 +160,7 @@ export let books = [
       new: false,
       best: true,
       inCart: false,
+      inFavorites: false,
       available: 5,
     },
     {
@@ -162,6 +172,7 @@ export let books = [
       new: true,
       best: false,
       inCart: false,
+      inFavorites: false,
       available: 5,
       genre: 'hud-lit'
     },
@@ -174,6 +185,7 @@ export let books = [
       new: true,
       best: true,
       inCart: false,
+      inFavorites: false,
       available: 5,
     },
   ]

@@ -13,8 +13,8 @@ import {
 
 import ModalBooks from '../UI/ModalWindow/ModalWindow'
 import CartButton from '../UI/CartButton'
+import FavoriteButton from '../UI/FavoriteButton'
 
-import CartImg from '../images/Cart.png'
 import FavoritesImg from '../images/Favorites.png'
 import Partners from '../images/Partners.png'
 
@@ -72,7 +72,7 @@ export default function Main() {
           >
             {books.filter(book => book.new === true).map((book) => (
               <div key={book.id} className='book'>
-              <button className='favorites'><img src={FavoritesImg} /></button>
+              <FavoriteButton book={book}/>
               <img src={book.img} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
@@ -112,7 +112,7 @@ export default function Main() {
           >
             {books.filter(book => book.best === true).map((book) => (
               <div key={book.id} className='book'>
-              <button className='favorites'><img src={FavoritesImg} /></button>
+              <FavoriteButton book={book}/>
               <img src={book.img} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>

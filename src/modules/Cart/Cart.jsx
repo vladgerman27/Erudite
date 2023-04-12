@@ -8,6 +8,7 @@ import plus from '../images/plus.png'
 import minus from '../images/minus.png'
 import bin from '../images/bin.png'
 import favorite from '../images/favorite2.png'
+import RedFavorite from '../images/RedFavorite.png'
   
 export default function Cart() {
   const [isCheckedAll, setIsCheckedAll] = useState(false);
@@ -15,6 +16,7 @@ export default function Cart() {
   const [count, setCount] = useState({});
   const [sum, setSum] = useState(books.filter(book => book.inCart === true).reduce((total, book) => total + book.cost, 0));
   const [cartStatus, setCartStatus] = useState(false);
+  const [favoriteStatus, setFavoriteStatus] = useState(false);
 
   function handleCheckboxChangeAll(event) {
     setIsCheckedAll(event.target.checked);
@@ -72,6 +74,15 @@ export default function Cart() {
     setSum(newBooks.filter(book => book.inCart === true).reduce((total, book) => total + book.cost, 0));
   }
 
+  function addFavorite(id) {
+  const index = books.findIndex(book => book.id === id);
+    if (index !== -1) {
+    const newBooks = [...books];
+    newBooks[index].inFavorites = true;
+    setFavoriteStatus(true);
+    }
+  }
+
   return (
     <div className='Cart'>
       <nav>Корзина</nav>
@@ -86,7 +97,9 @@ export default function Cart() {
                 <nav>{book.author}</nav>
                 <nav>{book.title}</nav>
                 <div className='cart-buttons'>
-                  <button><img src={favorite} /></button>
+                  <button key={books.id} onClick={() => addFavorite(book.id)}>
+                    <img src={book.inFavorites ? RedFavorite : favorite} />
+                  </button>
                   <button key={books.id} onClick={() => removeCart(book.id)}><img src={bin} /></button>
                 </div>
               </div>

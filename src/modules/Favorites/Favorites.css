@@ -1,0 +1,36 @@
+.Favorites {
+    padding-top: 80px;
+}
+
+.favnav {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.cross {
+    position: relative;
+    border: none;
+    background: none;
+    top: 36px;
+    left: -28px;
+}
+
+.cross img {
+    width: 41px;
+    height: 41px;
+}
+
+.Favorites .favorites {
+    left: 118px;
+}
+
+.Favorites .removeChecked {
+    margin-left: 1700px;
+    font-size: 20px;
+}
+
+.Favorites .removeChecked img {
+    width: 29px;
+    height: 29px;
+}

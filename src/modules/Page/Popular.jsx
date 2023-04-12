@@ -5,8 +5,7 @@ import React from 'react'
 import { books } from '../Books'
 import ModalBooks from '../UI/ModalWindow/ModalWindow'
 import CartButton from '../UI/CartButton'
-
-import Favorites from '../images/Favorites.png'
+import FavoriteButton from '../UI/FavoriteButton'
 
 export default function Popular() {
   return (
@@ -14,7 +13,7 @@ export default function Popular() {
       <h1>Популярные</h1>
         {books.filter(book => book.popular === true).map((book) => (
               <div key={book.id} className='book'>
-              <button className='favorites'><img src={Favorites} /></button>
+              <FavoriteButton book={book}/>
               <img src={book.img} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
