@@ -55,7 +55,7 @@ export default function Cart() {
     if (index !== -1) {
       const newBooks = [...books];
       newBooks[index].inCart = false;
-      setSum(sum - book.cost);
+      setSum(newBooks.filter(book => book.inCart === true).reduce((total, book) => total + book.cost, 0));
       setCartStatus(true);
     }
   }
