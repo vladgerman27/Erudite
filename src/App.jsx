@@ -7,6 +7,7 @@ import Page from './modules/Page/Page'
 import Popular from './modules/Page/Popular'
 import ModalBooks from './modules/UI/ModalWindow/ModalWindow'
 import Cart from './modules/Cart/Cart'
+import CartButton from './modules/UI/CartButton'
 
 import React, { useState } from 'react';
 import {
@@ -123,7 +124,7 @@ import {
             <nav>{book.author}</nav>
             <div className='buttons'>
               <ModalBooks book={book}/>
-              <button className='cart'><img src={CartImg} /></button>
+              <CartButton book={book} />
             </div>
           </div>
         ))}

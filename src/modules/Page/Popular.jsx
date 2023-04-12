@@ -4,9 +4,9 @@ import React from 'react'
 
 import { books } from '../Books'
 import ModalBooks from '../UI/ModalWindow/ModalWindow'
+import CartButton from '../UI/CartButton'
 
 import Favorites from '../images/Favorites.png'
-import Cart from '../images/Cart.png'
 
 export default function Popular() {
   return (
@@ -20,7 +20,7 @@ export default function Popular() {
               <nav>{book.author}</nav>
               <div className='buttons'>
                 <ModalBooks book={book}/>
-                <button className='cart'><img src={Cart} /></button>
+                <CartButton book={book} />
               </div>
             </div>
             ))}

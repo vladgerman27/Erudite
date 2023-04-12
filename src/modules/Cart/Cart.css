@@ -1,0 +1,160 @@
+.Cart {
+    padding-top: 80px;
+}
+
+.Cart nav {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.cart-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cart-books {
+    display: block;
+}
+
+label input {
+    display: none;
+}
+
+label {
+    font-size: 20px;
+    color: white;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+label span {
+    height: 36px;
+    width: 36px;
+    border: 2px solid white;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
+    background: none;
+    margin-right: 10px;
+}
+
+[type=checkbox]:checked + span:before {
+    content: '\2714';
+    position: absolute;
+    top: -7px;
+    left: 4px;
+    font-size: 36px;
+    color:white;
+}
+
+.cart-books label nav {
+    font-size: 20px;
+    vertical-align: middle;
+    padding-top: 7px;
+}
+
+.cart-book {
+    display: flex;
+    margin-top: 30px
+}
+
+.cart-book label {
+    padding-top: 110px;
+    margin-right: 45px;
+}
+
+.ta {
+    display: block;
+    margin-left: 42px;
+    margin-right: 24px;
+}
+
+.ta nav {
+    text-align: left;
+}
+
+.cart-book button {
+    background: none;
+    border: none;
+    margin-left: 38px;
+    margin-right: 38px;
+}
+
+.cart-book .cost {
+    padding-top: 123px;
+    margin-left: 35px;
+}
+
+.count {
+    padding-top: 123px;
+}
+
+.shops {
+    display: block;
+    margin-left: 165px;
+    margin-top: 70px;
+}
+
+.buy2 {
+    background-color: black;
+    border: none;
+    width: 410px;
+    height: 85px;
+    font-size: 30px;
+    color: white;
+}
+
+.buy2:hover {
+    background-color: rgb(26, 26, 26);
+    color: rgb(224, 224, 224);
+}
+
+.buy2:active {
+    background-color: rgb(31, 31, 31);
+    color: rgb(204, 204, 204);
+}
+
+.shops nav {
+    font-size: 30px;
+    color: white;
+    margin-top: 30px;
+    border-top: 2px solid white;
+    padding-top: 20px;
+}
+
+.shops span {
+    margin-left: 63px;
+}
+
+.cart-buttons {
+    display: flex;
+    margin-top: 164px;
+}
+
+.cart-buttons button {
+    background: none;
+    border: none;
+    margin-left: 0;
+    margin-right: 32px;
+}
+
+.cart-buttons img {
+    width: 45px;
+    height: 45px;
+}
+
+.removeChecked {
+    background: none;
+    border: none;
+    margin-top: 35px;
+    font-size: 25px;
+    color: white;
+    margin-left: 100px;
+}
+
+.removeChecked img {
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+}

@@ -23,7 +23,7 @@ export default function ModalBooks({ book }) {
 
   return (
     <div className='ModalBooks'>
-      <button className='buy' onClick={() => setModalIsOpen(true)}>{book.cost}</button>
+      <button className='buy' onClick={() => setModalIsOpen(true)}>{book.cost}тг</button>
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className='ModalWindow'>
         <button onClick={() => setModalIsOpen(false)} className='close'><img src={Cross} /></button>
         <nav><b>{book.title}</b></nav>
