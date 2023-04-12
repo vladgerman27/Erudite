@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # Ветка фронта
 ### Языки:
-- TypeScript
+- JavaScript
 
 ### Библиотека:
 - React
