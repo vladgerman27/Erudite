@@ -47,7 +47,7 @@ export default function ModalBooks({ book }) {
           </div>
 
           <div className='right-info'>
-            <nav>{book.cost}</nav>
+            <nav>{book.cost}тг</nav>
             <button className='addCart'>Добавить в корзину</button>
             <span className='safeBuy'><img src={Card}/>Безопасная оплата</span>
             <span className='comeBack'><img src={Arrow}/>Возврат в течении 14 дней</span>
