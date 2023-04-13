@@ -115,25 +115,6 @@ import {
     },
   ];
 
-  function Category({ genre }) {
-    return (
-      <div className='books'>
-        {genre.map((book) => (
-          <div key={book.id} className='book'>
-          <FavoriteButton book={book}/>
-            <img src={book.img} />
-            <nav><b>{book.title}</b></nav>
-            <nav>{book.author}</nav>
-            <div className='buttons'>
-              <ModalBooks book={book}/>
-              <CartButton book={book} />
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   function Navigation() {
     const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = useState('Каталог');
@@ -157,6 +138,38 @@ import {
   }
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  function Category({ genre }) {
+    const filteredBooks = genre.filter((book) => {
+      return (
+        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.author.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    });
+  
+    return (
+      <div className='books'>
+        {filteredBooks.map((book) => (
+          <div key={book.id} className='book'>
+            <FavoriteButton book={book}/>
+            <img src={book.img} />
+            <nav><b>{book.title}</b></nav>
+            <nav>{book.author}</nav>
+            <div className='buttons'>
+              <ModalBooks book={book}/>
+              <CartButton book={book} />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function handleSearch(event) {
+    setSearchQuery(event.target.value);
+  }
+
   return (
     <Router className="App">
       <header className='header'>
@@ -165,7 +178,7 @@ function App() {
         <div className='header-part'>
           <div className='header-top'>
             <div className='input'>
-              <input placeholder='Поиск...'/>
+              <input placeholder='Поиск...' value={searchQuery} onChange={handleSearch} />
               <img src={Search}/>
             </div>
 
@@ -187,10 +200,10 @@ function App() {
       </header>
 
       <Routes>
-        <Route key="/" path="/" element={<Main/>} />
+        <Route key="/" path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/contacts" element={<Contacts/>} />
-        <Route path="/popular" element={<Popular/>} />
+        <Route path="/popular" element={<Popular />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/favorites" element={<Favorites/>} />
       

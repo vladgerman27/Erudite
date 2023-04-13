@@ -8,8 +8,11 @@ import Tick from '../../images/Tick.png'
 import Card from '../../images/Card.png'
 import Arrow from '../../images/Arrow.png'
 
+import { books } from '../../Books';
+
 export default function ModalBooks({ book }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [cartStatus, setCartStatus] = useState(false);
   let agree = '';
   let agreeSrc = {src: ''};;
 
@@ -19,6 +22,15 @@ export default function ModalBooks({ book }) {
   } else {
     agree = 'Нет в наличии'
     agreeSrc.src = Cross
+  }
+
+  function addCart(id) {
+    const index = books.findIndex(book => book.id === id);
+    if (index !== -1) {
+      const newBooks = [...books];
+      newBooks[index].inCart = true;
+      setCartStatus(true);
+    }
   }
 
   return (
@@ -48,7 +60,7 @@ export default function ModalBooks({ book }) {
 
           <div className='right-info'>
             <nav>{book.cost}тг</nav>
-            <button className='addCart'>Добавить в корзину</button>
+            <button className='addCart' key={books.id} onClick={() => addCart(book.id)}>Добавить в корзину</button>
             <span className='safeBuy'><img src={Card}/>Безопасная оплата</span>
             <span className='comeBack'><img src={Arrow}/>Возврат в течении 14 дней</span>
             <span>{book.author}</span>
