@@ -1,0 +1,100 @@
+.ModalBooks {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ModalWindow {
+    margin-top: 80px;
+    width: 1036px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.ModalWindow nav {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.ModalWindow span {
+    font-size: 20px;
+    display: block;
+}
+
+.ModalWindow span img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.close {
+    background: none;
+    border: none;
+    position: relative;
+    left: 100%;
+    bottom: 55px;
+}
+
+.book-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-info, .right-info {
+    display: block;
+}
+
+.left-info {
+    margin-right: 310px;
+}
+
+.info-img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.addCart {
+    width: 512px;
+    height: 85px;
+    background-color: #C254B8;
+    color: white;
+    border: none;
+    font-size: 30px;
+    margin-bottom: 45px;
+}
+
+.addCart:hover {
+    background-color: #994592;
+}
+
+.addCart:active {
+    background-color: #75356f;
+}
+
+.right-info .safeBuy img {
+    width: 41px;
+    height: 41px;
+    margin-right: 10px;
+}
+
+.right-info .comeBack img {
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+.safeBuy {
+    margin-bottom: 23px;
+}
+
+.comeBack {
+    margin-bottom: 125px;
+}
+
+.ReactModal__Overlay,
+.ReactModal__Overlay--after-open {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}

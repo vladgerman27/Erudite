@@ -1,0 +1,312 @@
+.Main {
+    margin: 0;
+}
+
+.slider-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides-container {
+    height: 539px;
+    width: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slide-arrow {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 4rem;
+    background-color: white;
+    border: none;
+    width: 2rem;
+    font-size: 3rem;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 100ms;
+  }
+  
+  .slide-arrow:hover,
+  .slide-arrow:focus {
+    opacity: 1;
+  }
+  
+  #slide-arrow-prev {
+    left: 0;
+    padding-left: 0.25rem;
+    border-radius: 0 2rem 2rem 0;
+  }
+  
+  #slide-arrow-next {
+    right: 0;
+    padding-left: 0.75rem;
+    border-radius: 2rem 0 0 2rem;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+    flex: 1 0 100%;
+    text-align: center;
+  }
+
+  .slide-text {
+    margin-top: 235px;
+  }
+  
+  .slide-text nav {
+    font-size: 28px;
+  }
+  
+  .slide-text a {
+    font-size: 17px;
+    text-decoration: underline;
+    color: black;
+  }
+  
+  .slide:nth-child(1) {
+    background-image: url('../images/book.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.category nav, .genres nav {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.book {
+    width: 195px;
+    height: 500px;
+    display: block;
+    background-color: black;
+    padding: 35px;
+    padding-top: 0;
+    color: white;
+    box-shadow: 0px 0px 21px #0F0739;
+    margin: 28px;
+}
+
+.book img {
+    width: 195px;
+    height: 315px;
+    margin-bottom: 12px;
+}
+
+.book nav {
+    font-size: 22px;
+    max-width: 195px;
+    margin: 0;
+    text-align: start;
+}
+
+.buy {
+    margin-top: 20px;
+    background-color: #4C94E9;
+    width: 120px;
+    height: 40px;
+    border-radius: 100px;
+    color: black;
+    border: none;
+    font-size: 20px;
+}
+
+.buy:hover {
+    background-color: #3c75b6;
+}
+
+.buy:active {
+    background-color: #2e5989;
+}
+
+.buttons {
+    display: flex;
+}
+
+.cart {
+    border: none;
+    background: none;
+    margin-left: 22px;
+    margin-top: 19px;
+}
+
+.cart img {
+    width: 41px;
+    height: 41px;
+}
+
+.favorites {
+    position: relative;
+    border: none;
+    background: none;
+    top: 36px;
+    left: 168px;
+}
+
+.favorites img {
+    width: 41px;
+    height: 41px;
+}
+
+.books {
+    display: flex;
+}
+
+.slider-button {
+  width: 25px;
+  height: 7px;
+  background-color: #909090;
+  border: none;
+  margin: 5px;
+  margin-top: 15px;
+}
+
+.category ol {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.movements {
+  display: block;
+}
+
+.slider-tick {
+  display: flex;
+  justify-content: center;
+}
+
+.slider-tick button {
+  height: 25px;
+  margin: 25px;
+  margin-top: 15px;
+  border: none;
+  background: none;
+  color: black;
+  font-size: 45px;
+}
+
+.category ::-webkit-scrollbar {
+  display: none;
+}
+
+.category ::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.cubes {
+  display: block;
+}
+
+.cube-top {
+  display: flex;
+  justify-content: center;
+}
+
+.cube-column {
+  display: block;
+}
+
+.cube-bottom, .cube-column:nth-child(1), .cube-column:nth-child(2), .cube-column:nth-child(3) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 10px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+}
+
+.cube-bottom {
+  width: 1397px;
+  height: 194px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)),url('../images/manga.png');
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#hud-lit {
+  width: 453px;
+  height: 514px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/hud_lit.jpg');
+  margin-bottom: 20px;
+}
+
+#scince {
+  width: 453px;
+  height: 514px;  
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/scince.jpg');
+}
+
+#phylosophy {
+  width: 453px;
+  height: 248px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/phylosophy.jpg');
+  margin-bottom: 20px;
+}
+
+#family {
+  width: 453px;
+  height: 513px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/family.jpg');
+  margin-bottom: 20px;
+}
+
+#sport {
+  width: 453px;
+  height: 248px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/sport.jpg');
+}
+
+#buisness {
+  width: 453px;
+  height: 514px;  
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/buisness.jpg');
+  margin-bottom: 20px;
+}
+
+#nature {
+  width: 453px;
+  height: 514px;  
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../images/nature.jpg');
+}
+
+.cubes nav {
+  margin-top: 0;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+#hud-lit nav, #scince nav, #buisness nav,#nature nav {
+  padding-top: 250px;
+}
+
+#sport nav, #phylosophy nav {
+  padding-top: 110px;
+}
+
+#family nav {
+  padding-top: 240px;
+}
+
+.cube-bottom nav {
+  padding-top: 80px;
+}
+
+.partners {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.cube-column a:-webkit-any-link, .cube-bottom a:-webkit-any-link {
+  text-decoration: none;
+}
