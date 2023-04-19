@@ -1,6 +1,6 @@
 import './ModalWindow.css'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 import Cross from '../../images/Cross.png'
@@ -8,13 +8,20 @@ import Tick from '../../images/Tick.png'
 import Card from '../../images/Card.png'
 import Arrow from '../../images/Arrow.png'
 
-import { books } from '../../Books';
-
 export default function ModalBooks({ book }) {
+  const [books, setBooks] = useState([]);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cartStatus, setCartStatus] = useState(false);
   let agree = '';
   let agreeSrc = {src: ''};;
+
+  useEffect(() => {
+    fetch('http://localhost:8080/books')
+      .then(res => res.json())
+      .then(data => setBooks(data))
+      .catch(error => console.log(error));
+  }, []);
 
   if (book.available > 0) {
     agree = 'Есть в наличии'
@@ -24,13 +31,13 @@ export default function ModalBooks({ book }) {
     agreeSrc.src = Cross
   }
 
-  function addCart(id) {
-    const index = books.findIndex(book => book.id === id);
-    if (index !== -1) {
-      const newBooks = [...books];
-      newBooks[index].inCart = true;
-      setCartStatus(true);
-    }
+  function addCart(_id) {
+    fetch(`http://localhost:8080/books/${_id}/cart`, { method: 'PUT' })
+      .then(res => res.json())
+      .then(data => {
+        setCartStatus(true);
+      })
+      .catch(error => console.log(error));
   }
 
   return (
@@ -42,7 +49,7 @@ export default function ModalBooks({ book }) {
         <span><img src={agreeSrc.src} />{agree}</span>
         <div className='book-info'>
           <div className='left-info'>
-            <img src={book.img} className='info-img' />
+            <img src={require(`../../images/books/${book.img}.png`)} className='info-img' />
             <nav>Характеристики</nav>
             <span>Автор</span>
             <span>ISBN</span>
@@ -60,7 +67,7 @@ export default function ModalBooks({ book }) {
 
           <div className='right-info'>
             <nav>{book.cost}тг</nav>
-            <button className='addCart' key={books.id} onClick={() => addCart(book.id)}>Добавить в корзину</button>
+            <button className='addCart' key={books._id} onClick={() => addCart(book._id)}>Добавить в корзину</button>
             <span className='safeBuy'><img src={Card}/>Безопасная оплата</span>
             <span className='comeBack'><img src={Arrow}/>Возврат в течении 14 дней</span>
             <span>{book.author}</span>

@@ -1,6 +1,6 @@
 import './Main.css'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useSnapCarousel } from 'react-snap-carousel'
 import {
   BrowserRouter as Router,
@@ -15,12 +15,18 @@ import ModalBooks from '../UI/ModalWindow/ModalWindow'
 import CartButton from '../UI/CartButton'
 import FavoriteButton from '../UI/FavoriteButton'
 
-import FavoritesImg from '../images/Favorites.png'
 import Partners from '../images/Partners.png'
 
-import { books } from '../Books'
-
 export default function Main() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/books')
+      .then(res => res.json())
+      .then(data => setBooks(data))
+      .catch(error => console.log(error));
+  }, []);
+
   const slidesContainerRef = useRef(null);
   const slideRef = useRef(null);
   const slideWidth = slideRef.current ? slideRef.current.clientWidth : 0;
@@ -71,9 +77,9 @@ export default function Main() {
           }}
           >
             {books.filter(book => book.new === true).map((book) => (
-              <div key={book.id} className='book'>
+              <div key={book._id} className='book'>
               <FavoriteButton book={book}/>
-              <img src={book.img} />
+              <img src={require(`../images/books/${book.img}.png`)} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
               <div className='buttons'>
@@ -111,9 +117,9 @@ export default function Main() {
           }}
           >
             {books.filter(book => book.best === true).map((book) => (
-              <div key={book.id} className='book'>
+              <div key={book._id} className='book'>
               <FavoriteButton book={book}/>
-              <img src={book.img} />
+              <img src={require(`../images/books/${book.img}.png`)} />
               <nav><b>{book.title}</b></nav>
               <nav>{book.author}</nav>
               <div className='buttons'>

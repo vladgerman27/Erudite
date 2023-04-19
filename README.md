@@ -1,81 +1,41 @@
-<<<<<<< HEAD
-# Ветка фронта
-### Языки:
-- JavaScript
+Language:
+ -JavaScript
 
-### Библиотека:
-- React
+Framework:
+ -React
 
-Перед подгрузкой сюда чего либо проверяете на локалке
-=======
-# Getting Started with Create React App
+DataBase:
+ -MongoDB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 2653f25 (first commit)
+Instruction:
+ -There is no <node modules> folder in the project to create it, open the root folder and the <backend> folder in cmd and write <npm init> in each
+ -In the mongodb.js file, on the 10th line, instead of <User>, enter your username in mongodb, and in <password>, enter your password
+ -To start a react application, open the project root folder and enter the command <npm start> in cmd
+ -To run the database, open the <backend> folder and type in cmd the command <npm run dev>, click on the link localhost in cmd and in  the browser in the line with the link add </books> 
+ -To introduce a new book, in mongodb add the following type of document
+  {
+  "_id":{"$oid":"643cd42267acb25f60154d98"},
+  "img": "book1",
+  "title": "Тихие слова любви",
+  "author": "Сара Джио1",
+  "cost": 2990,
+  "new": true,
+  "best": true,
+  "genre": "hud-lit",
+  "available": 5,
+  "ISBN": "978-5-04-106152-4",
+  "janr": "Современная зарубежная проза",
+  "company": "Эскимо",
+  "series": "Триллер-клуб Ночь. Психологический триллер",
+  "age": "16+",
+  "year": 2020,
+  "binding": "Твёрдый",
+  "pages": 384,
+  "weight": 392,
+  "size": "207*133*25",
+  "language": "Русский",
+  "popular": true,
+  "inCart": false,
+  "inFavorites": false,
+  "annotation": "Два брата. Трагическое прошлое, преследующее их до сих пор. Оба приняли неверное решение, стоившее жизни их сестре. Один посвятил себя мести. Другой - прощению. И оба платят за свой выбор - гораздо больше, чем могли себе представить… С того времени, как неизвестный похитил и убил их сестру, прошло 20 лет. Адам, старший брат, выбрал профессию частного детектива, нелюдимого и циничного, оказывающего услуги людям из мира криминала. Младший, Кент, стал футбольным тренером, уважаемым членом общины и глубоко верующим человеком. Они не общаются, продолжая винить друг друга за то, что произошло с их сестрой. До тех пор пока не происходит новая трагедия, уже с другой девушкой, потому что оба брата вновь приняли неверное решение… Этот роман - история семейной трагедии, вины и искупления."
+  }

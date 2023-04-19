@@ -32,7 +32,15 @@ import {
   import Facebook from './modules/images/Facebook.png'
   import Vk from './modules/images/Vk.png'
   
-  import {books} from './modules/Books'
+function App() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/books')
+      .then(res => res.json())
+      .then(data => setBooks(data))
+      .catch(error => console.log(error));
+  }, []);
 
   const hudLitBooks = books.filter(book => book.genre === 'hud-lit')
   const buisnessBooks = books.filter(book => book.genre === 'buisness')
@@ -136,8 +144,6 @@ import {
       </select>
     )
   }
-
-function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   function Category({ genre }) {
@@ -151,9 +157,9 @@ function App() {
     return (
       <div className='books'>
         {filteredBooks.map((book) => (
-          <div key={book.id} className='book'>
+          <div key={book._id} className='book'>
             <FavoriteButton book={book}/>
-            <img src={book.img} />
+            <img src={require(`./modules/images/books/${book.img}.png`)} />
             <nav><b>{book.title}</b></nav>
             <nav>{book.author}</nav>
             <div className='buttons'>
