@@ -11,7 +11,7 @@ Instruction:
  -There is no <node modules> folder in the project to create it, open the root folder and the <backend> folder in cmd and write <npm init> in each
  -In the mongodb.js file, on the 10th line, instead of <User>, enter your username in mongodb, and in <password>, enter your password
  -To start a react application, open the project root folder and enter the command <npm start> in cmd
- -To run the database, open the <backend> folder and type in cmd the command <npm run dev>, click on the link localhost in cmd and in  the browser in the line with the link add </books> 
+ -To run the database, open the <backend> folder and type in cmd the command <npm run dev>
  -To introduce a new book, in mongodb add the following type of document
   {
   "_id":{"$oid":"643cd42267acb25f60154d98"},
