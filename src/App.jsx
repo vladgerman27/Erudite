@@ -10,6 +10,7 @@ import Cart from './modules/Cart/Cart'
 import CartButton from './modules/UI/CartButton'
 import Favorites from './modules/Favorites/Favorites'
 import FavoriteButton from './modules/UI/FavoriteButton'
+import Profile from './modules/Profile/Profile'
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -27,7 +28,6 @@ import {
   import Search from './modules/images/Search.png'
   import FavoritesImg from './modules/images/Favorites.png'
   import CartImg from './modules/images/Cart.png'
-  import Profile from './modules/images/Profile.png'
   import Instagram from './modules/images/Instagram.png'
   import Facebook from './modules/images/Facebook.png'
   import Vk from './modules/images/Vk.png'
@@ -176,6 +176,12 @@ function App() {
     setSearchQuery(event.target.value);
   }
 
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
+
+  const handleSetIsAuth = (token) => {
+    setIsAuth(token);
+  };
+
   return (
     <Router className="App">
       <header className='header'>
@@ -191,7 +197,7 @@ function App() {
             <div className='actions'>
               <NavLink to="/favorites"><img src={FavoritesImg} /></NavLink>
               <NavLink to="/cart"><img src={CartImg} /></NavLink>
-              <NavLink to="/profile"><img src={Profile} /></NavLink>
+              <Profile element={isAuth} handleSetIsAuth={handleSetIsAuth}/>
             </div>
           </div>
 
@@ -229,7 +235,6 @@ function App() {
 
         <div className='info'>
           <NavLink to="/aboutus">О нас</NavLink>
-          <NavLink to="">Преимущества</NavLink>
           <NavLink to="/contacts">Контакты</NavLink>
           <NavLink to="">Оплата и доставка</NavLink>
           <nav>Г. Алматы ул. Байтурсынова 22</nav>

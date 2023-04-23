@@ -114,6 +114,7 @@ export default function Main() {
             display: 'flex',
             overflow: 'auto',
             scrollSnapType: 'x mandatory'
+            
           }}
           >
             {books.filter(book => book.best === true).map((book) => (

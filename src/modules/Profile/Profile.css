@@ -1,0 +1,83 @@
+/* .Profile {
+    
+} */
+
+.profile {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.ModalProfile {
+    width: 730px;
+    min-height: 430px;
+    background-color: white;
+    margin-right: 0;
+    margin-left: auto;
+    display: block;
+    padding-left: 75px;
+    padding-top: 45px;
+    padding-bottom: 50px;
+}
+
+.logBtn {
+    width: 581px;
+    height: 51px;
+    background-color: #C254B8;
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 0;
+    display: block;
+}
+
+.logBtn:hover {
+    background-color: #994592;
+}
+
+.logBtn:active {
+    background-color: #75356f;
+}
+
+.closeProfile {
+    background: none;
+    border: none;
+    margin-left: 635px;
+}
+
+.titleProfile {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.ModalProfile input {
+    width: 581px;
+    height: 52px;
+    margin-top: 38px;
+    font-size: 16px;
+    color: black;
+    border: 2px solid rgba(123, 123, 123, 0.57);
+    padding-left: 15px;
+}
+
+.question {
+    color: black;
+    font-size: 16px;
+    margin-top: 24px;
+}
+
+.a {
+    color: #7B7B7B;
+    background: none;
+    border: none;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.mistake {
+    color: #FF3838;
+    font-size: 16px;
+    margin-top: 12px;
+}

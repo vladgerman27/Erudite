@@ -11,7 +11,7 @@
 .books {
     width: 1700px;
     display: grid;
-    grid-template-columns: 321px 321px 321px 321px 321px;
+    grid-template-columns: 300px 300px 300px 300px 300px;
     margin-left: auto;
     margin-right: auto;
 }
