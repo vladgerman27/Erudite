@@ -2,6 +2,7 @@ import './ModalWindow.css'
 
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 import Cross from '../../images/Cross.png'
 import Tick from '../../images/Tick.png'
@@ -31,13 +32,13 @@ export default function ModalBooks({ book }) {
     agreeSrc.src = Cross
   }
 
-  function addCart(_id) {
-    fetch(`http://localhost:8080/books/${_id}/cart`, { method: 'PUT' })
-      .then(res => res.json())
-      .then(data => {
-        setCartStatus(true);
-      })
-      .catch(error => console.log(error));
+  function addCart() {
+    const token = localStorage.getItem('isAuth');
+      axios.post('http://localhost:8080/cart', { bookId: book._id, bookImg: book.img, bookTitle: book.title,
+      bookAuthor: book.author, bookAvailable: book.available, bookCost: book.cost  }, 
+      { headers: { Authorization: `Bearer ${token}` } })
+      .then(response => { console.log('Книга успешно добавлена в корзину'); })
+      .catch(error => { console.error(error); });
   }
 
   return (

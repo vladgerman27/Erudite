@@ -1,6 +1,7 @@
 import './Cart.css'
 
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import plus from '../images/plus.png'
 import minus from '../images/minus.png'
@@ -9,90 +10,135 @@ import favorite from '../images/favorite2.png'
 import RedFavorite from '../images/RedFavorite.png'
   
 export default function Cart() {
-  const [books, setBooks] = useState([]);
+  const [cart, setCart] = useState([]);
+  const token = localStorage.getItem('isAuth');
 
   const [isCheckedAll, setIsCheckedAll] = useState(false);
   const [isChecked, setIsChecked] = useState([]);
   const [count, setCount] = useState({});
   const [sum, setSum] = useState(0);
-  const [cartStatus, setCartStatus] = useState(false);
-  const [favoriteStatus, setFavoriteStatus] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:8080/books')
-      .then(res => res.json())
-      .then(data => {
-        setBooks(data);
-        setSum(data.filter(book => book.inCart === true).reduce((total, book) => total + book.cost, 0));
+    axios.get('http://localhost:8080/cart', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => {
+        setCart(response.data);
+        setSum(response.data.reduce((total, book) => total + book.bookCost, 0));
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.error(error);
+      });
   }, []);
 
   function handleCheckboxChangeAll(event) {
     setIsCheckedAll(event.target.checked);
     if (event.target.checked) {
-      setIsChecked(books.filter((book) => book.inCart === true).map((book) => book._id));
+      setIsChecked(cart.map(book => book.bookId));
     } else {
       setIsChecked([]);
     }
   }
 
-  function handleCheckboxChange(event, _id) {
+  function handleCheckboxChange(event, bookId) {
     if (event.target.checked) {
-      setIsChecked([...isChecked, _id]);
+      setIsChecked([...isChecked, bookId]);
     } else {
-      setIsChecked(isChecked.filter((item) => item !== _id));
+      setIsChecked(isChecked.filter((item) => item !== bookId));
     }
   }
 
-  function countPlus(_id) {
-    const book = books.find((book) => book._id === _id);
-    if (count[_id] !== book.available) {
-      setCount({ ...count, [_id]: (count[_id] || 1) + 1 });
-      setSum(sum + book.cost);
+  function countPlus(bookId) {
+    const book = cart.find(book => book.bookId === bookId);
+    if (count[bookId] !== book.bookAvailable) {
+      setCount({ ...count, [bookId]: (count[bookId] || 1) + 1 });
+      setSum(sum + book.bookCost);
     }
   } 
 
-  function countMinus(_id) {
-    const book = books.find((book) => book._id === _id);
-    if (count[_id] > 1) {
-      setCount({ ...count, [_id]: (count[_id] || 0) - 1 });
-      setSum(sum - book.cost);
+  function countMinus(bookId) {
+    const book = cart.find((book) => book.bookId === bookId);
+    if (count[bookId] > 1) {
+      setCount({ ...count, [bookId]: (count[bookId] || 0) - 1 });
+      setSum(sum - book.bookCost);
     }
   } 
 
-  function removeCart(_id) {
-    fetch(`http://localhost:8080/books/${_id}/uncart`, { method: 'PUT' })
-    .then(res => res.json())
-    .then(data => {
-      setCartStatus(false);
+  function removeCart(bookId) {
+    axios({ method: 'POST', url: 'http://localhost:8080/cart/delete',
+      headers: { 'Authorization': `Bearer ${token}`, 'X-HTTP-Method-Override': 'DELETE' },
+      data: { bookId }
     })
-    .catch(error => console.log(error));
+    .then(response => {
+      setCart(cart.filter(book => book.bookId !== bookId));
+      setSum(sum - cart.find(book => book.bookId === bookId).bookCost);
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   function removeChecked() {
-    books.forEach(book => {
-      if (isChecked.includes(book._id)) {
-        book.inCart = false;
-        fetch(`http://localhost:8080/books/${book._id}/uncart`, { method: 'PUT', })
-        .then(res => res.json())
-        .then(data => {
-        })
-        .catch(error => {
-        });
-      }
-    });
+    const updatedCart = cart.filter(book => !isChecked.includes(book.bookId));
+
+  axios({ method: 'PUT', url: 'http://localhost:8080/cart',
+    headers: { 'Authorization': `Bearer ${token}` },
+    data: { cart: updatedCart }
+  })
+  .then(response => {
+    setCart(updatedCart);
     setIsChecked([]);
+  })
+  .catch(error => {
+    console.error(error);
+  });
   }
 
-  function addFavorite(_id) {
-    fetch(`http://localhost:8080/books/${_id}/favorite`, { method: 'PUT' })
-    .then(res => res.json())
-    .then(data => {
-      setFavoriteStatus(true);
-    })
-    .catch(error => console.log(error));
+  function addFavorite(bookId, bookImg, bookTitle, bookAuthor, bookCost) {
+    const token = localStorage.getItem('isAuth');
+    axios.post('http://localhost:8080/favorites', {
+        bookId: bookId,
+        bookImg: bookImg,
+        bookTitle: bookTitle,
+        bookAuthor: bookAuthor,
+        bookCost: bookCost
+      },
+      { headers: { Authorization: `Bearer ${token}` } })
+      .then(response => {
+        console.log('Книга успешно добавлена в избранные');
+        const updatedCart = cart.map(book => {
+          if (book.bookId === bookId) {
+            return {
+              ...book,
+              isFavorite: true
+            };
+          }
+          return book;
+        });
+        setCart(updatedCart);
+      })
+      .catch(error => { console.error(error); });
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('isAuth');
+    cart.forEach(book => {
+      axios.get(`http://localhost:8080/isFavorite/${book.bookId}`, { headers: { Authorization: `Bearer ${token}` } })
+        .then(response => {
+          const updatedCart = cart.map(b => {
+            if (b.bookId === book.bookId) {
+              return {
+                ...b,
+                isFavorite: response.data.isFavorite
+              };
+            }
+            return b;
+          });
+          setCart(updatedCart);
+        })
+        .catch(error => { console.error(error); });
+    });
+  }, [cart]);
 
   return (
     <div className='Cart'>
@@ -100,24 +146,24 @@ export default function Cart() {
       <div className="cart-info">
         <div className='cart-books'>
           <label className='all'><input type="checkbox" checked={isCheckedAll} onChange={handleCheckboxChangeAll} /><span></span><nav>Выбрать все</nav></label>
-          {books.filter(book => book.inCart === true).map((book) => (
-            <div key={book._id} className='cart-book'>
-              <label><input type="checkbox" checked={isChecked.includes(book._id)} onChange={(e) => handleCheckboxChange(e, book._id)} /><span></span></label>
-              <img src={require(`../images/books/${book.img}.png`)} />
+          {cart.map(book => (
+            <div key={book.bookId} className='cart-book'>
+              <label><input type="checkbox" checked={isChecked.includes(book.bookId)} onChange={(e) => handleCheckboxChange(e, book.bookId)} /><span></span></label>
+              <img src={require(`../images/books/${book.bookImg}.png`)} />
               <div className='ta'>
-                <nav>{book.author}</nav>
-                <nav>{book.title}</nav>
+                <nav>{book.bookAuthor}</nav>
+                <nav>{book.bookTitle}</nav>
                 <div className='cart-buttons'>
-                  <button key={books._id} onClick={() => addFavorite(book._id)}>
-                    <img src={book.inFavorites ? RedFavorite : favorite} />
+                  <button onClick={() => addFavorite(book.bookId, book.bookImg, book.bookTitle, book.bookAuthor, book.bookCost)}>
+                    {book.isFavorite ? <img src={RedFavorite} /> : <img src={favorite} />}
                   </button>
-                  <button key={books._id} onClick={() => removeCart(book._id)}><img src={bin} /></button>
+                  <button onClick={() => removeCart(book)}><img src={bin} /></button>
                 </div>
               </div>
-              <button onClick={() => countPlus(book._id)}><img src={plus} /></button>
-              <nav className='count'>{count[book._id] || 1}</nav>
-              <button onClick={() => countMinus(book._id)}><img src={minus} /></button>
-              <nav className='cost'>{book.cost}тг</nav>
+              <button onClick={() => countPlus(book.bookId)}><img src={plus} /></button>
+              <nav className='count'>{count[book.bookId] || 1}</nav>
+              <button onClick={() => countMinus(book.bookId)}><img src={minus} /></button>
+              <nav className='cost'>{book.bookCost}тг</nav>
             </div>
             ))}
         </div>

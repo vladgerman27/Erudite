@@ -28,10 +28,12 @@ export default function Profile({ handleSetIsAuth }) {
       }
 
       try {
-        const response = await axios.post("http://localhost:8080/login", { email, password });
+        const response = await axios.post("http://localhost:8080/login", { email, password, name});
         localStorage.setItem("isAuth", response.data.token);
         handleSetIsAuth(response.data.token);
+        setName(response.data.name);
         setLoginIsOpen(false);
+        setAccount(true);
       } catch (error) {
         console.error(error);
         setLoginMis("Неверный логин или пароль");
@@ -44,16 +46,21 @@ export default function Profile({ handleSetIsAuth }) {
         setSingupMis("Пропущено поле или введен неверный пароль. Повторите ввод.")
       }
 
-      const response = await axios.post('http://localhost:8080/register', { email, password, name });
-      localStorage.setItem('isAuth', response.data.token);
-      handleSetIsAuth(response.data.token);
-      setSingupIsOpen(false);
+      try {
+        const response = await axios.post('http://localhost:8080/register', { email, password});
+        localStorage.setItem('isAuth', response.data.token);
+        handleSetIsAuth(response.data.token);
+        setSingupIsOpen(false);
+        setAccount(true);
+      }catch (error) {
+        console.error(error);
+        setSingupMis("Пользователь с таким email уже зарегистрирован");
+      }
     }
     
     function profileIsOpen() {
       if (localStorage.getItem('isAuth') !== null) {
         setAccount(true);
-        //setName(localStorage.getItem('name'));
       } else {
         setModalIsOpen(true);
       }
@@ -99,7 +106,7 @@ export default function Profile({ handleSetIsAuth }) {
 
         <Modal isOpen={account} onRequestClose={() => setAccount(false)} className='ModalProfile'>
           <button onClick={() => setAccount(false)} className='closeProfile'><img src={Cross} /></button>
-          <nav className='titleProfile'>{name}</nav>
+          <nav className='titleProfile'>Добро пожаловать, {name}!</nav>
           <button className='logBtn' onClick={handleLogout}>Выйти</button>
         </Modal>
     </div>
