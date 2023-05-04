@@ -1,6 +1,6 @@
 import './Favorites.css'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 import ModalBooks from '../UI/ModalWindow/ModalWindow';
@@ -9,6 +9,7 @@ import CartButton from '../UI/CartButton';
 import RedFavorite from '../images/RedFavorite.png'
 import Cross from '../images/WhiteCross.png'
 import bin from '../images/bin.png'
+import cartImg from '../images/Cart.png'
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -55,6 +56,31 @@ export default function Favorites() {
     });
   }
 
+  const addCart = useCallback((bookId, bookImg, bookTitle, bookAuthor, bookCost, bookAvailable) => {
+    axios.post('http://localhost:8080/cart', {
+        bookId: bookId,
+        bookImg: bookImg,
+        bookTitle: bookTitle,
+        bookAuthor: bookAuthor,
+        bookCost: bookCost,
+        bookAvailable: bookAvailable
+      },
+      { headers: { Authorization: `Bearer ${token}` } })
+      .then(response => {
+        console.log('Книга успешно добавлена в корзину');
+        const updatedCart = favorites.map(book => {
+          if (book.bookId === bookId) {
+            return {
+              ...book,
+            };
+          }
+          return book;
+        });
+        setFavorites(updatedCart);
+      })
+      .catch(error => { console.error(error); });
+  }, [favorites, token]);
+
   return (
     <div className='Favorites'>
         <nav className='favnav'>Избранное</nav>
@@ -69,7 +95,9 @@ export default function Favorites() {
                 <nav>{book.bookAuthor}</nav>
                 <div className='buttons'>
                     {/* <ModalBooks book={book}/> */}
-                    <CartButton book={book} />
+                    <button className='cart' onClick={() => addCart(book.bookId, book.bookImg, book.bookTitle, book.bookAuthor, book.bookCost, book.bookAvailable)}>
+                      <img src={cartImg} />
+                    </button>
                 </div>
             </div>
             ))}

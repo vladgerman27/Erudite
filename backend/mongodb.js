@@ -151,39 +151,20 @@ app.use(express.json());
     }
   });
 
-  app.put('/cart', verifyToken, async (req, res) => {
-    const userId = req.userId;
-    const cart = req.body.cart;
-  
-    try {
-      const client = await MongoClient.connect(dbUri);
-      const db = client.db('EruditeDB');
-      const users = db.collection('UsersCollection');
-      await users.updateOne(
-        { _id: new ObjectId(userId) },
-        { $set: { cart } }
-      );
-  
-      res.json({ message: 'Корзина успешно обновлена' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
   app.post('/favorites', verifyToken, async (req, res) => {
     const bookId = req.body.bookId;
     const bookImg = req.body.bookImg;
     const bookTitle = req.body.bookTitle;
     const bookAuthor = req.body.bookAuthor;
     const bookCost = req.body.bookCost;
+    const bookAvailable = req.body.bookAvailable;
     const userId = req.userId;
     
     try {
     const client = await MongoClient.connect(dbUri);
     const db = client.db('EruditeDB');
     const users = db.collection('UsersCollection');
-    await users.updateOne({ _id: new ObjectId(userId) }, { $push: { favorites: {bookId, bookImg, bookTitle, bookAuthor, bookCost} }});
+    await users.updateOne({ _id: new ObjectId(userId) }, { $push: { favorites: {bookId, bookImg, bookTitle, bookAuthor, bookCost, bookAvailable} }});
     
     res.json({ message: 'Книга успешно добавлена в корзину' });
     } catch (error) {

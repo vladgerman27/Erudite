@@ -37,7 +37,7 @@ export default function ModalBooks({ book }) {
       axios.post('http://localhost:8080/cart', { bookId: book._id, bookImg: book.img, bookTitle: book.title,
       bookAuthor: book.author, bookAvailable: book.available, bookCost: book.cost  }, 
       { headers: { Authorization: `Bearer ${token}` } })
-      .then(response => { console.log('Книга успешно добавлена в корзину'); })
+      .then(response => { console.log('Книга успешно добавлена gв корзину'); })
       .catch(error => { console.error(error); });
   }
 

@@ -1,7 +1,16 @@
 import './Cart.css'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Routes,
+    NavLink,
+    BrowserRouter,
+    useNavigate
+  } from "react-router-dom"
 
 import plus from '../images/plus.png'
 import minus from '../images/minus.png'
@@ -17,6 +26,7 @@ export default function Cart() {
   const [isChecked, setIsChecked] = useState([]);
   const [count, setCount] = useState({});
   const [sum, setSum] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:8080/cart', {
@@ -69,13 +79,15 @@ export default function Cart() {
       headers: { 'Authorization': `Bearer ${token}`, 'X-HTTP-Method-Override': 'DELETE' },
       data: { bookId }
     })
-    .then(response => {
-      setCart(cart.filter(book => book.bookId !== bookId));
-      setSum(sum - cart.find(book => book.bookId === bookId).bookCost);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+      .then(response => {
+        const removedBook = cart.find(book => book.bookId === bookId);
+        const newCart = cart.filter(book => book.bookId !== bookId);
+        setCart(newCart);
+        setSum(sum - removedBook.bookCost);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   function removeChecked() {
@@ -94,8 +106,7 @@ export default function Cart() {
   });
   }
 
-  function addFavorite(bookId, bookImg, bookTitle, bookAuthor, bookCost) {
-    const token = localStorage.getItem('isAuth');
+  const addFavorite = useCallback((bookId, bookImg, bookTitle, bookAuthor, bookCost) => {
     axios.post('http://localhost:8080/favorites', {
         bookId: bookId,
         bookImg: bookImg,
@@ -118,7 +129,7 @@ export default function Cart() {
         setCart(updatedCart);
       })
       .catch(error => { console.error(error); });
-  }
+  }, [cart, token]);
 
   useEffect(() => {
     const token = localStorage.getItem('isAuth');
@@ -140,6 +151,10 @@ export default function Cart() {
     });
   }, [cart]);
 
+  function Buy() {
+    navigate('/payment')
+  }
+
   return (
     <div className='Cart'>
       <nav>Корзина</nav>
@@ -157,7 +172,7 @@ export default function Cart() {
                   <button onClick={() => addFavorite(book.bookId, book.bookImg, book.bookTitle, book.bookAuthor, book.bookCost)}>
                     {book.isFavorite ? <img src={RedFavorite} /> : <img src={favorite} />}
                   </button>
-                  <button onClick={() => removeCart(book)}><img src={bin} /></button>
+                  <button onClick={() => removeCart(book.bookId)}><img src={bin} /></button>
                 </div>
               </div>
               <button onClick={() => countPlus(book.bookId)}><img src={plus} /></button>
@@ -169,7 +184,7 @@ export default function Cart() {
         </div>
 
         <div className='shops'>
-          <button className='buy2'>Купить</button>
+          <button className='buy2' onClick={Buy}>Купить</button>
           <nav>Общая стоимость <span>{sum}</span></nav>
           <button onClick={removeChecked} className='removeChecked'>Удалить выделенное <img src={bin} /></button>
         </div>

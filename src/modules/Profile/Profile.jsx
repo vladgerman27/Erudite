@@ -25,18 +25,18 @@ export default function Profile({ handleSetIsAuth }) {
       e.preventDefault();
       if (email === "" || password === "") {
         setSingupMis("Пропущено поле для заполнения.")
-      }
-
-      try {
+      } else {
+	try {
         const response = await axios.post("http://localhost:8080/login", { email, password, name});
         localStorage.setItem("isAuth", response.data.token);
-        handleSetIsAuth(response.data.token);
-        setName(response.data.name);
-        setLoginIsOpen(false);
-        setAccount(true);
-      } catch (error) {
-        console.error(error);
-        setLoginMis("Неверный логин или пароль");
+        	handleSetIsAuth(response.data.token);
+        	setName(response.data.name);
+        	setLoginIsOpen(false);
+        	setAccount(true);
+      	} catch (error) {
+        	console.error(error);
+        	setLoginMis("Неверный логин или пароль");
+      	}
       }
     }
 
@@ -44,17 +44,17 @@ export default function Profile({ handleSetIsAuth }) {
       e.preventDefault();
       if (name === "" || email === "" || password === "" || confirmPassword === "" || confirmPassword !== password) {
         setSingupMis("Пропущено поле или введен неверный пароль. Повторите ввод.")
-      }
-
-      try {
-        const response = await axios.post('http://localhost:8080/register', { email, password});
-        localStorage.setItem('isAuth', response.data.token);
-        handleSetIsAuth(response.data.token);
-        setSingupIsOpen(false);
-        setAccount(true);
-      }catch (error) {
-        console.error(error);
-        setSingupMis("Пользователь с таким email уже зарегистрирован");
+      } else {
+	try {
+        	const response = await axios.post('http://localhost:8080/register', { email, password});
+        	localStorage.setItem('isAuth', response.data.token);
+        	handleSetIsAuth(response.data.token);
+        	setSingupIsOpen(false);
+        	setAccount(true);
+      	}catch (error) {
+        	console.error(error);
+        	setSingupMis("Пользователь с таким email уже зарегистрирован");
+      	}
       }
     }
     

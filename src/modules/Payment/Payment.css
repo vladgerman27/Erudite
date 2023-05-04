@@ -1,0 +1,127 @@
+.Payment {
+    display: flex;
+    justify-content: space-around;
+    padding: 80px;
+}
+
+.order-info, .pay-input, .your-cart {
+    display: block;
+}
+
+.pay-nav {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.pay-input {
+    width: 580.51px;
+    background: none;
+    color: white;
+    border: 2px solid white;
+    padding: 15px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.pay-input::-webkit-input-placeholder { 
+    color: white; 
+}
+
+.Payment label input {
+    display: none;
+}
+
+.Payment label {
+    font-size: 17px;
+    color: white;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.Payment label span {
+    width: 25px;
+    height: 25px;
+    border: 2px solid white;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
+    background: none;
+    margin-right: 10px;
+}
+
+.Payment [type=checkbox]:checked + span:before {
+    content: '\2714';
+    position: absolute;
+    top: -7px;
+    left: 4px;
+    font-size: 36px;
+    color:white;
+}
+
+.Payment label nav {
+    padding-top: 5px;
+}
+
+.err {
+    color: black;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.Payment button {
+    width: 581px;
+    height: 60px;
+    background-color: #C254B8;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+.Payment button:hover {
+    background-color: #994592;
+}
+
+.Payment button:active {
+    background-color: #75356f;
+}
+
+.cartBook {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cartBook img {
+    width: 113px;
+    height: 173px;
+    margin-bottom: 60px;
+    margin-right: 100px;
+}
+
+.your-cart-nav {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 50px;
+}
+
+.cartBook nav {
+    color: white;
+    font-size: 25px;
+}
+
+.cart-cost {
+    display: flex;
+    margin-top: 90px;
+}
+
+.cart-sum {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid white;
+    padding-top: 20px;
+}
+
+.cart-sum nav {
+    color: white;
+    font-size: 28px;
+}

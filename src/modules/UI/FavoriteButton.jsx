@@ -14,7 +14,8 @@ export default function FavoriteButton({book}) {
         bookImg: book.img,
         bookTitle: book.title,
         bookAuthor: book.author,
-        bookCost: book.cost
+        bookCost: book.cost,
+        bookAvailable: book.available
       },
       { headers: { Authorization: `Bearer ${token}` } })
       .then(response => {

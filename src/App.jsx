@@ -11,6 +11,7 @@ import CartButton from './modules/UI/CartButton'
 import Favorites from './modules/Favorites/Favorites'
 import FavoriteButton from './modules/UI/FavoriteButton'
 import Profile from './modules/Profile/Profile'
+import Payment from './modules/Payment/Payment'
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -218,6 +219,7 @@ function App() {
         <Route path="/popular" element={<Popular />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/favorites" element={<Favorites/>} />
+        <Route path="/payment" element={<Payment/>} />
       
         {categories.map(category =>
           <Route key={category.path} path={category.path} element={
@@ -236,7 +238,7 @@ function App() {
         <div className='info'>
           <NavLink to="/aboutus">О нас</NavLink>
           <NavLink to="/contacts">Контакты</NavLink>
-          <NavLink to="">Оплата и доставка</NavLink>
+          <NavLink to="/payment">Оплата и доставка</NavLink>
           <nav>Г. Алматы ул. Байтурсынова 22</nav>
           <div className='time'>
             <nav>пн-пт 10:00 — 21:00</nav>

@@ -29,15 +29,16 @@ export default function Main() {
 
   const slidesContainerRef = useRef(null);
   const slideRef = useRef(null);
-  const slideWidth = slideRef.current ? slideRef.current.clientWidth : 0;
-  
-  function handleNextButtonClick() {
-  slidesContainerRef.current.scrollLeft += slideWidth;
-  }
-  
-  function handlePrevButtonClick() {
-  slidesContainerRef.current.scrollLeft -= slideWidth;
-  }
+
+  const handleNextButtonClick = () => {
+    const slideWidth = slideRef.current.clientWidth;
+    slidesContainerRef.current.scrollLeft += slideWidth;
+  };
+
+  const handlePrevButtonClick = () => {
+    const slideWidth = slideRef.current.clientWidth;
+    slidesContainerRef.current.scrollLeft -= slideWidth;
+  };
 
   const newBooksRef = useRef(null);
   const bestBooksRef = useRef(null);
