@@ -54,8 +54,8 @@
     content: '\2714';
     position: absolute;
     top: -7px;
-    left: 4px;
-    font-size: 36px;
+    left: 2px;
+    font-size: 28px;
     color:white;
 }
 
@@ -89,6 +89,7 @@
 .cartBook {
     display: flex;
     justify-content: space-around;
+    margin-right: 30px;
 }
 
 .cartBook img {
@@ -124,4 +125,17 @@
 .cart-sum nav {
     color: white;
     font-size: 28px;
+}
+
+.cart-scroll {
+    height: 450px;
+    overflow-y: scroll; 
+}
+
+.cart-scroll::-webkit-scrollbar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+.cart-scroll::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
 }
