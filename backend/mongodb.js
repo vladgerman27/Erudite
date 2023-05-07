@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 
 const port = 8080;
-const dbUri = "mongodb+srv://<User>:<password>@eruditedb.qtmggzp.mongodb.net/?retryWrites=true&w=majority";
+const dbUri = "mongodb+srv://Vlad:26417108@eruditedb.qtmggzp.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(cors());
 app.use(express.json());
@@ -96,13 +96,14 @@ app.use(express.json());
     const bookAuthor = req.body.bookAuthor;
     const bookAvailable = req.body.bookAvailable;
     const bookCost = req.body.bookCost;
+    const bookCount = 1;
     const userId = req.userId;
     
     try {
     const client = await MongoClient.connect(dbUri);
     const db = client.db('EruditeDB');
     const users = db.collection('UsersCollection');
-    await users.updateOne({ _id: new ObjectId(userId) }, { $push: { cart: {bookId, bookImg, bookTitle, bookAuthor, bookAvailable, bookCost} }});
+    await users.updateOne({ _id: new ObjectId(userId) }, { $push: { cart: {bookId, bookImg, bookTitle, bookAuthor, bookAvailable, bookCost, bookCount} }});
     
     res.json({ message: 'Книга успешно добавлена в корзину' });
     } catch (error) {
@@ -110,6 +111,50 @@ app.use(express.json());
     res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  app.put('/cart/:bookId', verifyToken, async (req, res) => {
+    const bookId = req.params.bookId;
+    const userId = req.userId;
+    const action = req.body.action;
+  
+    try {
+      const client = await MongoClient.connect(dbUri);
+      const db = client.db('EruditeDB');
+      const users = db.collection('UsersCollection');
+      const user = await users.findOne({ _id: new ObjectId(userId) });
+      const cart = user.cart;
+      const book = cart.find((book) => book.bookId === bookId);
+  
+      if (action === 'plus') {
+        if (book.bookCount < book.bookAvailable) {
+          await users.updateOne(
+            { _id: new ObjectId(userId), 'cart.bookId': bookId },
+            { $inc: { 'cart.$.bookCount': 1 } }
+          );
+          res.json({ message: 'Количество товара успешно увеличено' });
+        } else {
+          res.status(400).json({ error: 'Недостаточно товара на складе' });
+        }
+      } else if (action === 'minus') {
+        if (book.bookCount > 1) {
+          await users.updateOne(
+            { _id: new ObjectId(userId), 'cart.bookId': bookId },
+            { $inc: { 'cart.$.bookCount': -1 } }
+          );
+          res.json({ message: 'Количество товара успешно уменьшено' });
+        } else {
+          res.json({ message: 'Количество товара уже равно 1' });
+        }
+      } else {
+        res.status(400).json({ error: 'Неверный запрос' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+  
 
   app.get('/cart', verifyToken, async (req, res) => {
     const userId = req.userId;
@@ -150,6 +195,27 @@ app.use(express.json());
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  app.put('/cart', verifyToken, async (req, res) => {
+    const userId = req.userId;
+    const cart = req.body.cart;
+  
+    try {
+      const client = await MongoClient.connect(dbUri);
+      const db = client.db('EruditeDB');
+      const users = db.collection('UsersCollection');
+      await users.updateOne(
+        { _id: new ObjectId(userId) },
+        { $set: { cart } }
+      );
+  
+      res.json({ message: 'Корзина успешно обновлена' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
 
   app.post('/favorites', verifyToken, async (req, res) => {
     const bookId = req.body.bookId;

@@ -12,6 +12,7 @@ import Favorites from './modules/Favorites/Favorites'
 import FavoriteButton from './modules/UI/FavoriteButton'
 import Profile from './modules/Profile/Profile'
 import Payment from './modules/Payment/Payment'
+import Card from './modules/Payment/Card'
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -220,6 +221,7 @@ function App() {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/favorites" element={<Favorites/>} />
         <Route path="/payment" element={<Payment/>} />
+        <Route path="/card" element={<Card/>} />
       
         {categories.map(category =>
           <Route key={category.path} path={category.path} element={

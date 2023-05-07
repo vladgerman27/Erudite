@@ -112,6 +112,7 @@
 
 .cart-cost {
     display: flex;
+    justify-content: space-around;
     margin-top: 90px;
 }
 
@@ -138,4 +139,15 @@
 
 .cart-scroll::-webkit-scrollbar-thumb {
     background-color: #cccccc;
+}
+
+.Card {
+    display: block;
+    padding-top: 80px;
+    text-align: center;
+}
+
+.Card input {
+    margin-left: auto;
+    margin-right: auto;
 }

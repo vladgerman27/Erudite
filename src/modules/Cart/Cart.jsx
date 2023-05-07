@@ -34,7 +34,7 @@ export default function Cart() {
     })
       .then(response => {
         setCart(response.data);
-        setSum(response.data.reduce((total, book) => total + book.bookCost, 0));
+        setSum(response.data.reduce((total, book) => total + book.bookCost * book.bookCount, 0));
       })
       .catch(error => {
         console.error(error);
@@ -63,6 +63,14 @@ export default function Cart() {
     if (count[bookId] !== book.bookAvailable) {
       setCount({ ...count, [bookId]: (count[bookId] || 1) + 1 });
       setSum(sum + book.bookCost);
+      axios.put(`http://localhost:8080/cart/${bookId}`, { action: 'plus' }, 
+      {headers: { 'Authorization': `Bearer ${token}` }})
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   } 
 
@@ -71,6 +79,12 @@ export default function Cart() {
     if (count[bookId] > 1) {
       setCount({ ...count, [bookId]: (count[bookId] || 0) - 1 });
       setSum(sum - book.bookCost);
+      axios.put(`http://localhost:8080/cart/${bookId}`, { action: 'minus' }, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+        .catch(error => {
+          console.error(error);
+        });
     }
   } 
 
@@ -176,7 +190,7 @@ export default function Cart() {
                 </div>
               </div>
               <button onClick={() => countPlus(book.bookId)}><img src={plus} /></button>
-              <nav className='count'>{count[book.bookId] || 1}</nav>
+              <nav className='count'>{book.bookCount}</nav>
               <button onClick={() => countMinus(book.bookId)}><img src={minus} /></button>
               <nav className='cost'>{book.bookCost}тг</nav>
             </div>

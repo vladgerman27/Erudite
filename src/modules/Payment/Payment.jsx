@@ -17,7 +17,6 @@ export default function Payment() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [cart, setCart] = useState([]);
   const [sum, setSum] = useState(0);
-  const [count, setCount] = useState({});
   const [err, setErr] = useState('');
   const navigate = useNavigate();
 
@@ -33,8 +32,7 @@ export default function Payment() {
     })
       .then(response => {
         setCart(response.data);
-        setSum(response.data.reduce((total, book) => total + book.bookCost, 0));
-        setCount(response.data.reduce((total, book) => total + book.bookCost, 0));
+        setSum(response.data.reduce((total, book) => total + book.bookCost * book.bookCount , 0));
       })
       .catch(error => {
         console.error(error);
@@ -62,7 +60,7 @@ export default function Payment() {
   //         console.error(error);
   //         setSingupMis("Пользователь с таким email уже зарегистрирован");
   //       }
-      navigate('/pay')
+      navigate('/card')
     }
   }
 
@@ -117,7 +115,7 @@ export default function Payment() {
                     <nav>{book.bookAuthor}</nav>
                     <nav>{book.bookTitle}</nav>
                     <div className='cart-cost'>
-                      {/* <nav>{count}</nav> */}
+                      <nav>{book.bookCount}шт</nav>
                       <nav>{book.bookCost}тг</nav>
                     </div>
                   </div>

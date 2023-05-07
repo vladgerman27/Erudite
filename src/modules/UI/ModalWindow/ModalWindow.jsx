@@ -13,7 +13,6 @@ export default function ModalBooks({ book }) {
   const [books, setBooks] = useState([]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [cartStatus, setCartStatus] = useState(false);
   let agree = '';
   let agreeSrc = {src: ''};;
 
