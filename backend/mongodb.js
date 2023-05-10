@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 
 const port = 8080;
-const dbUri = "mongodb+srv://Vlad:26417108@eruditedb.qtmggzp.mongodb.net/?retryWrites=true&w=majority";
+const dbUri = "your mongodb link";
 
 app.use(cors());
 app.use(express.json());
