@@ -4,7 +4,7 @@
 
 .Cart nav {
     color: white;
-    font-size: 30px;
+    font-size: 28px;
     text-align: center;
 }
 
@@ -22,7 +22,7 @@ label input {
 }
 
 label {
-    font-size: 20px;
+    font-size: 17px;
     color: white;
     display: flex;
     margin-bottom: 30px;
@@ -49,7 +49,7 @@ label span {
 }
 
 .cart-books label nav {
-    font-size: 20px;
+    font-size: 17px;
     vertical-align: middle;
     padding-top: 7px;
 }
@@ -58,6 +58,8 @@ label span {
     display: flex;
     margin-top: 30px
 }
+
+
 
 .cart-book label {
     padding-top: 110px;
@@ -100,7 +102,7 @@ label span {
     border: none;
     width: 410px;
     height: 85px;
-    font-size: 30px;
+    font-size: 28px;
     color: white;
 }
 
@@ -115,7 +117,7 @@ label span {
 }
 
 .shops nav {
-    font-size: 30px;
+    font-size: 28px;
     color: white;
     margin-top: 30px;
     border-top: 2px solid white;

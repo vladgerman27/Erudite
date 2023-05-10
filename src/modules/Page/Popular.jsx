@@ -18,7 +18,7 @@ export default function Popular() {
 
   return (
     <div className='Page'>
-      <h1>Популярные</h1>
+      <nav className='h'>Популярные</nav>
       <div className='books'>
         {books.filter(book => book.popular === true).map((book) => (
               <div key={book._id} className='book'>

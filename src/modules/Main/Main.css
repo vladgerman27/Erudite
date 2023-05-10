@@ -82,14 +82,21 @@
 .category nav, .genres nav {
     text-align: center;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 80px;
     margin-bottom: 20px;
 }
 
+.category ul {
+  display: grid;
+  width: 1438px;
+  grid-template-columns: 279px 279px 279px 279px 279px;
+  padding-left: 0;
+} 
+
 .book {
-    width: 195px;
-    height: 500px;
+    width: 177px;
+    height: 457px;
     display: block;
     background-color: black;
     padding: 35px;
@@ -100,14 +107,14 @@
 }
 
 .book img {
-    width: 195px;
-    height: 315px;
+    width: 177px;
+    height: 282px;
     margin-bottom: 12px;
 }
 
 .book nav {
-    font-size: 22px;
-    max-width: 195px;
+    font-size: 18px;
+    max-width: 177px;
     margin: 0;
     text-align: start;
 }
@@ -115,12 +122,12 @@
 .buy {
     margin-top: 20px;
     background-color: #4C94E9;
-    width: 120px;
-    height: 40px;
+    width: 77px;
+    height: 25px;
     border-radius: 100px;
     color: black;
     border: none;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .buy:hover {
@@ -138,8 +145,8 @@
 .cart {
     border: none;
     background: none;
-    margin-left: 22px;
-    margin-top: 19px;
+    margin-left: 47px;
+    margin-top: 8px;
 }
 
 .cart img {
@@ -151,13 +158,13 @@
     position: relative;
     border: none;
     background: none;
-    top: 36px;
-    left: 168px;
+    top: 30px;
+    left: 157px;
 }
 
 .favorites img {
-    width: 41px;
-    height: 41px;
+    width: 29px;
+    height: 29px;
 }
 
 .books {
@@ -181,21 +188,28 @@
 
 .movements {
   display: block;
+  height: 0;
 }
 
-.slider-tick {
+.category-slider {
   display: flex;
-  justify-content: center;
 }
 
-.slider-tick button {
+.slider-tick { 
   height: 25px;
-  margin: 25px;
-  margin-top: 15px;
+  margin-top: 255px;
   border: none;
   background: none;
   color: black;
   font-size: 45px;
+}
+
+.slider-tick:nth-child(1) {
+  margin-left: 15px;
+}
+
+.slider-tick:nth-child(2) {
+  margin-left: 15px;
 }
 
 .category ::-webkit-scrollbar {

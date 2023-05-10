@@ -9,18 +9,24 @@
     margin-left: auto;
     margin-right: auto;
     padding: 60px;
-    max-height: 525px;
+    padding-top: 0;
+    max-height: 600px;
     overflow-y: auto;
 }
 
 .ModalWindow nav {
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
 .ModalWindow span {
-    font-size: 20px;
+    font-size: 17px;
     display: block;
+}
+
+.left-info img {
+    width: 217px;
+    height: 332px;
 }
 
 .ModalWindow span img {
@@ -35,7 +41,7 @@
     border: none;
     position: relative;
     left: 100%;
-    bottom: 55px;
+    top: 5px;
 }
 
 .book-info {
@@ -48,7 +54,7 @@
 }
 
 .left-info {
-    margin-right: 310px;
+    margin-right: 268px;
 }
 
 .info-img {
@@ -62,7 +68,7 @@
     background-color: #C254B8;
     color: white;
     border: none;
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 45px;
 }
 
@@ -91,7 +97,7 @@
 }
 
 .comeBack {
-    margin-bottom: 125px;
+    margin-bottom: 166px;
 }
 
 .ReactModal__Overlay,

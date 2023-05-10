@@ -1,7 +1,19 @@
 .Contacts {
+    display: block;
+    justify-content: space-around;
+    padding-top: 80px;
+}
+
+.Contacts nav {
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    margin-bottom: 55px;
+}
+
+.contact {
     display: flex;
     justify-content: space-around;
-    padding-top: 170px;
 }
 
 .contacts-info {
@@ -10,13 +22,13 @@
 }
 
 .contacts-info nav {
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 60px;
     margin-bottom: 30px;
 }
 
 .contacts-info span {
-    font-size: 25px;
+    font-size: 17px;
     display: block;
 }
 

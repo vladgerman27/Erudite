@@ -4,6 +4,8 @@ import React from 'react'
 export default function Contacts() {
   return (
     <div className='Contacts'>
+      <nav>Контакты</nav>
+      <div className='contact'>
         <div className='contacts-info'>
             <nav>Адресс</nav>
             <span>г. Алматы, ул. Жарокова, 137 блок В1 ЖК "Арай", </span>
@@ -22,6 +24,7 @@ export default function Contacts() {
         </div>
 
         <div className='map'></div>
+      </div>
     </div>
   )
 }

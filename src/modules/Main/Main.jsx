@@ -69,27 +69,31 @@ export default function Main() {
       <div className='categories'>
         <div className='category'>
           <nav><b>Новинки</b></nav>
-          <ul
-          ref={newBooksScrollRef}
-          style={{
-            display: 'flex',
-            overflow: 'auto',
-            scrollSnapType: 'x mandatory'
-          }}
-          >
-            {books.filter(book => book.new === true).map((book) => (
-              <div key={book._id} className='book'>
-              <FavoriteButton book={book}/>
-              <img src={require(`../images/books/${book.img}.png`)} />
-              <nav><b>{book.title}</b></nav>
-              <nav>{book.author}</nav>
-              <div className='buttons'>
-                <ModalBooks book={book}/>
-                <CartButton book={book} />
+          <div className='category-slider'>
+            <button className='slider-tick' onClick={() => newBooksPrev()}>&#8249;</button>
+            <ul
+            ref={newBooksScrollRef}
+            style={{
+              display: 'flex',
+              overflow: 'auto',
+              scrollSnapType: 'x mandatory'
+            }}
+            >
+              {books.filter(book => book.new === true).map((book) => (
+                <div key={book._id} className='book'>
+                <FavoriteButton book={book}/>
+                <img src={require(`../images/books/${book.img}.png`)} />
+                <nav><b>{book.title}</b></nav>
+                <nav>{book.author}</nav>
+                <div className='buttons'>
+                  <ModalBooks book={book}/>
+                  <CartButton book={book} />
+                </div>
               </div>
-            </div>
-            ))}
-          </ul>
+              ))}
+            </ul>
+            <button className='slider-tick' onClick={() => newBooksNext()}>&#8250;</button>
+          </div>
           <div className='movements'>
             <ol style={{ display: 'flex' }}>
               {newBooksPages.map((_, i) => (
@@ -101,36 +105,38 @@ export default function Main() {
               ))}
             </ol>
             <div className='slider-tick'>
-              <button onClick={() => newBooksPrev()}>&#8249;</button>
-              <button onClick={() => newBooksNext()}>&#8250;</button>
             </div>
           </div>
         </div>
 
         <div className='category'>
           <nav><b>Лучшее за месяц</b></nav>
-          <ul
-          ref={bestBooksScrollRef}
-          style={{
-            display: 'flex',
-            overflow: 'auto',
-            scrollSnapType: 'x mandatory'
-            
-          }}
-          >
-            {books.filter(book => book.best === true).map((book) => (
-              <div key={book._id} className='book'>
-              <FavoriteButton book={book}/>
-              <img src={require(`../images/books/${book.img}.png`)} />
-              <nav><b>{book.title}</b></nav>
-              <nav>{book.author}</nav>
-              <div className='buttons'>
-                <ModalBooks book={book}/>
-                <CartButton book={book} />
-              </div>
-            </div>
-            ))}
-          </ul>
+            <div className='category-slider'>
+              <button className='slider-tick' onClick={() => bestBooksPrev()}>&#8249;</button>
+              <ul
+              ref={bestBooksScrollRef}
+              style={{
+                display: 'flex',
+                overflow: 'auto',
+                scrollSnapType: 'x mandatory'
+                
+              }}
+              >
+                {books.filter(book => book.best === true).map((book) => (
+                  <div key={book._id} className='book'>
+                  <FavoriteButton book={book}/>
+                  <img src={require(`../images/books/${book.img}.png`)} />
+                  <nav><b>{book.title}</b></nav>
+                  <nav>{book.author}</nav>
+                  <div className='buttons'>
+                    <ModalBooks book={book}/>
+                    <CartButton book={book} />
+                  </div>
+                </div>
+                ))}
+              </ul>
+              <button className='slider-tick' onClick={() => bestBooksNext()}>&#8250;</button>
+          </div>
           <div className='movements'>
             <ol style={{ display: 'flex' }}>
               {bestBooksPages.map((_, i) => (
@@ -141,10 +147,6 @@ export default function Main() {
                   </button>
               ))}
             </ol>
-            <div className='slider-tick'>
-              <button onClick={() => bestBooksPrev()}>&#8249;</button>
-              <button onClick={() => bestBooksNext()}>&#8250;</button>
-            </div>
           </div>
         </div>
       </div>

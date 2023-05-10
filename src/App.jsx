@@ -33,6 +33,10 @@ import {
   import Instagram from './modules/images/Instagram.png'
   import Facebook from './modules/images/Facebook.png'
   import Vk from './modules/images/Vk.png'
+  import pageCart from './modules/images/pageCart.png'
+  import pageFavorites from './modules/images/pageFavorites.png'
+
+  import "@fontsource/merriweather";
   
 function App() {
   const [books, setBooks] = useState([]);
@@ -197,8 +201,8 @@ function App() {
             </div>
 
             <div className='actions'>
-              <NavLink to="/favorites"><img src={FavoritesImg} /></NavLink>
-              <NavLink to="/cart"><img src={CartImg} /></NavLink>
+              <NavLink to="/favorites"><img src={pageFavorites} /></NavLink>
+              <NavLink to="/cart"><img src={pageCart} /></NavLink>
               <Profile element={isAuth} handleSetIsAuth={handleSetIsAuth}/>
             </div>
           </div>

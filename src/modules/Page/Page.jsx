@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export default function Page(props) {
   return (
     <div className='Page'>
-        <h1>{props.name}</h1>
+        <nav className='h'>{props.name}</nav>
         {props.genre}
     </div>
   )
