@@ -94,7 +94,7 @@ export default function Favorites() {
                 <nav><b>{book.bookTitle}</b></nav>
                 <nav>{book.bookAuthor}</nav>
                 <div className='buttons'>
-                    {/* <ModalBooks book={book}/> */}
+                    <button className='buy'>{book.bookCost}тг</button>
                     <button className='cart' onClick={() => addCart(book.bookId, book.bookImg, book.bookTitle, book.bookAuthor, book.bookCost, book.bookAvailable)}>
                       <img src={cartImg} />
                     </button>

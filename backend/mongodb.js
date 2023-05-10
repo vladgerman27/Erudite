@@ -153,8 +153,6 @@ app.use(express.json());
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
-  
-  
 
   app.get('/cart', verifyToken, async (req, res) => {
     const userId = req.userId;
@@ -215,6 +213,48 @@ app.use(express.json());
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  app.patch('/cart/delete', verifyToken, async (req, res) => {
+    const userId = req.userId;
+  
+    try {
+      const client = await MongoClient.connect(dbUri);
+      const db = client.db('EruditeDB');
+      const users = db.collection('UsersCollection');
+      const books = db.collection('BooksCollection');
+  
+      const user = await users.findOne({ _id: new ObjectId(userId) });
+      const cart = user.cart;
+  
+      for (const item of cart) {
+        const bookId = item.bookId;
+        const bookCount = item.bookCount;
+      
+        const book = await books.findOne({ _id: new ObjectId(bookId) });
+        const result = await books.updateOne(
+          { _id: new ObjectId(bookId) },
+          { $inc: { available: -bookCount } }
+        ).catch(error => console.error(error));
+        
+        if (result.modifiedCount !== 1) {
+          console.log(`Modified count: ${result.modifiedCount}`);
+        }
+      }
+  
+      await users.updateOne(
+        { _id: new ObjectId(userId) },
+        { $set: { cart: [] } }
+      );
+  
+      res.json({ message: 'Корзина пользователя успешно очищена' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+
+  
   
 
   app.post('/favorites', verifyToken, async (req, res) => {

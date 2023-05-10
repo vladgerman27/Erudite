@@ -69,7 +69,7 @@
     margin-bottom: 30px;
 }
 
-.Payment button {
+.Payment button, .Card button {
     width: 581px;
     height: 60px;
     background-color: #C254B8;
@@ -78,11 +78,11 @@
     border: none;
 }
 
-.Payment button:hover {
+.Payment button:hover, .Card button:hover {
     background-color: #994592;
 }
 
-.Payment button:active {
+.Payment button:active, .Card button:active {
     background-color: #75356f;
 }
 
@@ -150,4 +150,23 @@
 .Card input {
     margin-left: auto;
     margin-right: auto;
+}
+
+.cart-sum-card {
+    display: flex;
+    padding-top: 20px;
+    margin-left: 458px;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.cart-sum-card nav {
+    margin-right: 63px;
+}
+
+.Card .err {
+    text-align: left;
+    margin-left: 458px;
+    margin-bottom: 0;
 }

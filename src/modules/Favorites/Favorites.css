@@ -34,3 +34,7 @@
     width: 29px;
     height: 29px;
 }
+
+.buttons .buy:hover, .buttons .buy:active {
+    background-color: #4C94E9;
+}

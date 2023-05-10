@@ -47,22 +47,34 @@ export default function Payment() {
     e.preventDefault();
     if (name === "" || surname ==="" || phone === "" || email === "" || adress === "") {
       setErr("Пропущено поле для заполнения")
-      } else if (!document.querySelector("input[name='paymentMethod']:checked")) {
+    } else if (!document.querySelector("input[name='paymentMethod']:checked")) {
       setErr("Выберите способ оплаты")
-      } else {
-  // try {
-  //         const response = await axios.post('http://localhost:8080/register', { email, password});
-  //         localStorage.setItem('isAuth', response.data.token);
-  //         handleSetIsAuth(response.data.token);
-  //         setSingupIsOpen(false);
-  //         setAccount(true);
-  //       }catch (error) {
-  //         console.error(error);
-  //         setSingupMis("Пользователь с таким email уже зарегистрирован");
-  //       }
-      navigate('/card')
+    } else if (paymentMethod === "cash") {
+      try {
+        for (const book of cart) {
+          if (book.paymentMethod === "cash") {
+            const response = await axios.patch(`http://localhost:8080/books/${book._id}`, {
+              available: book.available - book.bookCount
+            });
+          }
+        }
+  
+        const response = await axios.patch('http://localhost:8080/cart/delete', {
+          paymentMethod
+        }, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        setCart([]);
+        navigate('/');
+      } catch (error) {
+        console.error(error);
+        setErr('Ошибка на сервере');
+      }
+    } else if (paymentMethod === "card") {
+      navigate('/card');
     }
   }
+  
 
   return (
     <div className='Payment'>

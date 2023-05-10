@@ -14,7 +14,6 @@ Instruction:
  -To run the database, open the <backend> folder and type in cmd the command <npm run dev>
  -To introduce a new book, in mongodb add the following type of document
   {
-  "_id":{"$oid":"643cd42267acb25f60154d98"},
   "img": "book1",
   "title": "Тихие слова любви",
   "author": "Сара Джио1",
