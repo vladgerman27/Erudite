@@ -71,6 +71,7 @@ export default function Cart() {
         .catch(error => {
           console.error(error);
         });
+        window.location.reload();
     }
   } 
 
@@ -85,6 +86,7 @@ export default function Cart() {
         .catch(error => {
           console.error(error);
         });
+      window.location.reload();
     }
   } 
 
