@@ -89,7 +89,7 @@
 
 .category ul {
   display: grid;
-  width: 1438px;
+  min-width: 1438px;
   grid-template-columns: 279px 279px 279px 279px 279px;
   padding-left: 0;
 } 
