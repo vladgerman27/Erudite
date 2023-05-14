@@ -77,16 +77,18 @@ export default function Cart() {
 
   function countMinus(bookId) {
     const book = cart.find((book) => book.bookId === bookId);
-    if (count[bookId] > 1) {
-      setCount({ ...count, [bookId]: (count[bookId] || 0) - 1 });
+    if (count[bookId] !== 1) {
+      setCount({ ...count, [bookId]: (count[bookId] || 1) - 1 });
       setSum(sum - book.bookCost);
-      axios.put(`http://localhost:8080/cart/${bookId}`, { action: 'minus' }, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      })
+      axios.put(`http://localhost:8080/cart/${bookId}`, { action: 'minus' }, 
+      {headers: { 'Authorization': `Bearer ${token}` }})
+        .then(response => {
+          console.log(response.data);
+        })
         .catch(error => {
           console.error(error);
         });
-      window.location.reload();
+        window.location.reload();
     }
   } 
 
@@ -100,6 +102,7 @@ export default function Cart() {
         const newCart = cart.filter(book => book.bookId !== bookId);
         setCart(newCart);
         setSum(sum - removedBook.bookCost);
+        window.location.reload();
       })
       .catch(error => {
         console.error(error);
@@ -116,6 +119,7 @@ export default function Cart() {
   .then(response => {
     setCart(updatedCart);
     setIsChecked([]);
+    window.location.reload();
   })
   .catch(error => {
     console.error(error);
