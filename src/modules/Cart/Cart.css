@@ -59,7 +59,10 @@ label span {
     margin-top: 30px
 }
 
-
+.cart-img {
+    width: 113px;
+    height: 173px; 
+}
 
 .cart-book label {
     padding-top: 110px;
