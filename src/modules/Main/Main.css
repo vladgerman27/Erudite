@@ -202,14 +202,7 @@
   background: none;
   color: black;
   font-size: 45px;
-}
-
-.slider-tick:nth-child(1) {
-  margin-left: 15px;
-}
-
-.slider-tick:nth-child(2) {
-  margin-left: 15px;
+  margin-left: 21px;
 }
 
 .category ::-webkit-scrollbar {
