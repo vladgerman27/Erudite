@@ -184,7 +184,7 @@ export default function Cart() {
           {cart.map(book => (
             <div key={book.bookId} className='cart-book'>
               <label><input type="checkbox" checked={isChecked.includes(book.bookId)} onChange={(e) => handleCheckboxChange(e, book.bookId)} /><span></span></label>
-              <img src={require(`../images/books/${book.bookImg}.png`)} />
+              <img className='cart-img' src={require(`../images/books/${book.bookImg}.png`)} />
               <div className='ta'>
                 <nav>{book.bookAuthor}</nav>
                 <nav>{book.bookTitle}</nav>
