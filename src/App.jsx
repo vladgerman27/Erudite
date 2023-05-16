@@ -28,8 +28,6 @@ import {
 
   import Company_logo from './modules/images/Mask_group.png'
   import Search from './modules/images/Search.png'
-  import FavoritesImg from './modules/images/Favorites.png'
-  import CartImg from './modules/images/Cart.png'
   import Instagram from './modules/images/Instagram.png'
   import Facebook from './modules/images/Facebook.png'
   import Vk from './modules/images/Vk.png'

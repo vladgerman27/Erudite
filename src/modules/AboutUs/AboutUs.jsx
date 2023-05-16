@@ -1,8 +1,6 @@
 import './AboutUs.css'
 import React from 'react'
 
-import RickRoll from '../video/RickRoll.mp4'
-
 export default function AboutUs() {
   return (
     <div className='AboutUs'>
@@ -30,9 +28,9 @@ export default function AboutUs() {
 
         <nav className='greeting'>Желаем вам приятного чтения!</nav>
 
-        <video controls="controls">
-            <source src={RickRoll} type='video/mp4'/>
-        </video>
+        <iframe src="https://www.youtube.com/embed/1k7XhVDDXRU" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen></iframe>
     </div>
   )
 }

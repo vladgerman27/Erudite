@@ -35,5 +35,9 @@
 .map {
     width: 637px;
     height: 637px;
-    background-color: white;
+}
+
+.ymaps-2-1-79-map:nth-child(2) {
+    position: relative;
+    bottom: 637px;
 }

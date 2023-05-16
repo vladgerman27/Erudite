@@ -1,7 +1,18 @@
 import './Contacts.css'
 import React from 'react'
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 export default function Contacts() {
+  const mapState = {
+    center: [43.236423, 76.899541],
+    zoom: 18,
+  };
+
+  const placemarkGeometry = [43.236423, 76.899541];
+  const placemarkProperties = {
+    iconContent: 'Эрудит',
+  };
+
   return (
     <div className='Contacts'>
       <nav>Контакты</nav>
@@ -23,7 +34,11 @@ export default function Contacts() {
             <span>+7 (701) 918-83-88</span>
         </div>
 
-        <div className='map'></div>
+        <YMaps>
+          <Map state={mapState} className='map'>
+            <Placemark geometry={placemarkGeometry} properties={placemarkProperties} />
+          </Map>
+        </YMaps>
       </div>
     </div>
   )
