@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.90ef044f.css",
-    "main.js": "/static/js/main.c5853380.js",
+    "main.css": "/static/css/main.808bccfe.css",
+    "main.js": "/static/js/main.278589b1.js",
     "static/js/651.95d368cf.chunk.js": "/static/js/651.95d368cf.chunk.js",
-    "static/media/RickRoll.mp4": "/static/media/RickRoll.c7c91519d5a58354aefa.mp4",
     "static/media/book.png": "/static/media/book.4691fa93031b2d18793d.png",
     "static/media/hud_lit.jpg": "/static/media/hud_lit.b076579b00806f8ff12d.jpg",
     "static/media/manga.png": "/static/media/manga.8f2097673a7e157ea410.png",
@@ -11,17 +10,23 @@
     "static/media/phylosophy.jpg": "/static/media/phylosophy.7ff4825b450bde3bb149.jpg",
     "static/media/nature.jpg": "/static/media/nature.09247fa69e8ed69d8308.jpg",
     "static/media/book1.png": "/static/media/book1.05201250ea31d8df3238.png",
+    "static/media/merriweather-all-400-normal.woff": "/static/media/merriweather-all-400-normal.5e7a0e6a9b864b89292d.woff",
     "static/media/buisness.jpg": "/static/media/buisness.a44727a0a0432eff0c22.jpg",
     "static/media/family.jpg": "/static/media/family.bd509423acbe766b74f1.jpg",
     "static/media/scince.jpg": "/static/media/scince.08fc9437d3766c0d71f8.jpg",
     "static/media/Partners.png": "/static/media/Partners.e4bb14d0231a6b6bf414.png",
+    "static/media/merriweather-latin-400-normal.woff2": "/static/media/merriweather-latin-400-normal.e009f21405b4d7e89367.woff2",
+    "static/media/merriweather-cyrillic-ext-400-normal.woff2": "/static/media/merriweather-cyrillic-ext-400-normal.2a880e22b1b888ab5465.woff2",
+    "static/media/merriweather-latin-ext-400-normal.woff2": "/static/media/merriweather-latin-ext-400-normal.4657f5ab02d5923d223f.woff2",
+    "static/media/merriweather-cyrillic-400-normal.woff2": "/static/media/merriweather-cyrillic-400-normal.fde0b55efc50742fb57f.woff2",
+    "static/media/merriweather-vietnamese-400-normal.woff2": "/static/media/merriweather-vietnamese-400-normal.1c4607f612e73642c77e.woff2",
     "index.html": "/index.html",
-    "main.90ef044f.css.map": "/static/css/main.90ef044f.css.map",
-    "main.c5853380.js.map": "/static/js/main.c5853380.js.map",
+    "main.808bccfe.css.map": "/static/css/main.808bccfe.css.map",
+    "main.278589b1.js.map": "/static/js/main.278589b1.js.map",
     "651.95d368cf.chunk.js.map": "/static/js/651.95d368cf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90ef044f.css",
-    "static/js/main.c5853380.js"
+    "static/css/main.808bccfe.css",
+    "static/js/main.278589b1.js"
   ]
 }
