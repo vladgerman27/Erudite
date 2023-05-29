@@ -204,16 +204,16 @@ function App() {
     setIsAuth(token);
   };
 
-  //Or you can use whatsapp newsletter instead of card payment. Uncomment the bottom lines of code.
+  //Or you can use WhatsApp newsletter instead of card payment. Uncomment the bottom lines of code.
   
-  // const handleSendMessage = () => {
-  //   const message = cart.map(book => `${book.bookTitle}, ${book.bookAuthor}, ${book.bookCost}тг, ${book.bookCount} штука`).join('\n');
-  //   const formattedMessage = encodeURIComponent(`Здравствуйте, хочу заказать:\n${message}`);
-  //   const phoneNumber = '+77718619001';
+  const handleSendMessage = () => {
+  const message = cart.map(book => `${book.bookTitle}, ${book.bookAuthor}, ${book.bookCost}тг, ${book.bookCount} штука`).join('\n');
+  const formattedMessage = encodeURIComponent(`Здравствуйте, хочу заказать:\n${message}`);
+  const phoneNumber = 'your phone number';
 
-  //   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${formattedMessage}`;
-  //   window.open(whatsappUrl, '_blank');
-  // };
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${formattedMessage}`;
+  window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <Router className="App">
