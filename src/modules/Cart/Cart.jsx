@@ -173,6 +173,14 @@ export default function Cart() {
 
   function Buy() {
     navigate('/payment')
+    //Or you can use whatsapp newsletter instead of card payment. Comment out navigate and uncomment the bottom lines of code.
+
+    // const message = cart.map(book => `${book.bookTitle}, ${book.bookAuthor}, ${book.bookCost}тг, ${book.bookCount} штука`).join('\n');
+    // const formattedMessage = encodeURIComponent(`Здравствуйте, хочу заказать:\n${message}`);
+    // const phoneNumber = 'your phone number';
+
+    // const whatsappUrl = `https://wa.me/${phoneNumber}?text=${formattedMessage}`;
+    // window.open(whatsappUrl, '_blank');
   }
 
   return (
