@@ -15,6 +15,7 @@ import Payment from './modules/Payment/Payment'
 import Card from './modules/Payment/Card'
 
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
     BrowserRouter as Router,
     Route,
@@ -38,12 +39,29 @@ import {
   
 function App() {
   const [books, setBooks] = useState([]);
+  const [cart, setCart] = useState([]);
+  
+  const token = localStorage.getItem('isAuth');
+  const [sum, setSum] = useState(0);
 
   useEffect(() => {
     fetch('http://localhost:8080/books')
       .then(res => res.json())
       .then(data => setBooks(data))
       .catch(error => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/cart', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => {
+        setCart(response.data);
+        setSum(response.data.reduce((total, book) => total + book.bookCost * book.bookCount, 0));
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }, []);
 
   const hudLitBooks = books.filter(book => book.genre === 'hud-lit')
@@ -186,6 +204,17 @@ function App() {
     setIsAuth(token);
   };
 
+  //Or you can use whatsapp newsletter instead of card payment. Uncomment the bottom lines of code.
+  
+  // const handleSendMessage = () => {
+  //   const message = cart.map(book => `${book.bookTitle}, ${book.bookAuthor}, ${book.bookCost}тг, ${book.bookCount} штука`).join('\n');
+  //   const formattedMessage = encodeURIComponent(`Здравствуйте, хочу заказать:\n${message}`);
+  //   const phoneNumber = '+77718619001';
+
+  //   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${formattedMessage}`;
+  //   window.open(whatsappUrl, '_blank');
+  // };
+
   return (
     <Router className="App">
       <header className='header'>
@@ -242,7 +271,7 @@ function App() {
         <div className='info'>
           <NavLink to="/aboutus">О нас</NavLink>
           <NavLink to="/contacts">Контакты</NavLink>
-          <NavLink to="/payment">Оплата и доставка</NavLink>
+          <NavLink /*onClick={handleSendMessage}*/ to="/payment">Оплата и доставка</NavLink> 
           <nav>Г. Алматы ул. Байтурсынова 22</nav>
           <div className='time'>
             <nav>пн-пт 10:00 — 21:00</nav>
