@@ -269,7 +269,7 @@ function App() {
         <div className='info'>
           <NavLink to="/aboutus">О нас</NavLink>
           <NavLink to="/contacts">Контакты</NavLink
-          /*Or you can use WhatsApp newsletter instead of card payment. Uncomment the bottom lines of code.*/
+          {/* Or you can use whatsapp newsletter instead of card payment. Uncomment the bottom lines of code. */}
           <NavLink /*onClick={handleSendMessage}*/ to="/payment">Оплата и доставка</NavLink> 
           <nav>Г. Алматы ул. Байтурсынова 22</nav>
           <div className='time'>
